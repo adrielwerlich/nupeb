@@ -12,7 +12,9 @@ class NupebController {
         this.el.nupebCine = document.getElementById('nupeb-cinedebate')
         this.el.nupebDocs = document.getElementById('nupeb-documents')
         this.el.nupebEvents = document.getElementById('nupeb-events')
-        // this.el.photosCine = document.getElementById('photos-cine')
+        this.el.nupebThemes = document.getElementById('nupeb-themes')
+
+        //this.el.nupebThemes = document.getElementById('nupeb-themes')
         
         
         // ****** buttons and links ********
@@ -24,16 +26,33 @@ class NupebController {
         this.el.btnCine = document.getElementById('btn-cinedebate')
         this.el.btnDocs = document.getElementById('btn-documents')
         this.el.btnEvents = document.getElementById('btn-events')
+        this.el.btnMovies = document.getElementById('btn-movies')
+
 
         this.initPrototypes()
         this.initEvents()
 
     }
     initEvents(){
+        this.el.btnMovies.addEventListener('click', e => {
+            this.el.nupebThemes.show()
+            this.el.btnBack.showGrid()
+
+            this.el.nupebEvents.hide()
+            this.el.nupebDocs.hide()
+            this.el.nupebActivities.hide()
+            this.el.nupebContact.hide()
+            this.el.nupebMembers.hide()
+            this.el.aboutNupeb.hide()
+            this.el.jumbo.hide()
+            this.el.logo.hide()
+            this.el.nupebCine.hide()
+        })
         this.el.btnEvents.addEventListener('click', e => {
             this.el.nupebEvents.show()
             this.el.btnBack.showGrid()
 
+            this.el.nupebThemes.hide()
             this.el.nupebDocs.hide()
             this.el.nupebActivities.hide()
             this.el.nupebContact.hide()
@@ -47,6 +66,7 @@ class NupebController {
             this.el.nupebDocs.show()
             this.el.btnBack.showGrid()
             
+            this.el.nupebThemes.hide()
             this.el.nupebEvents.hide()
             this.el.nupebActivities.hide()
             this.el.nupebContact.hide()
@@ -59,8 +79,8 @@ class NupebController {
         this.el.btnCine.addEventListener('click', e => {
             this.el.nupebCine.show()
             this.el.btnBack.showGrid()
-            // this.el.photosCine.show()
-    
+            
+            this.el.nupebThemes.hide()
             this.el.nupebEvents.hide()
             this.el.nupebDocs.hide()
             this.el.nupebActivities.hide()
@@ -74,6 +94,7 @@ class NupebController {
             this.el.nupebActivities.show()
             this.el.btnBack.showGrid()
 
+            this.el.nupebThemes.hide()
             this.el.nupebEvents.hide()
             this.el.nupebDocs.hide()
             this.el.nupebContact.hide()
@@ -87,6 +108,7 @@ class NupebController {
             this.el.btnBack.showGrid()
             this.el.nupebContact.show()
             
+            this.el.nupebThemes.hide()
             this.el.nupebEvents.hide()
             this.el.nupebDocs.hide()
             this.el.nupebActivities.hide()
@@ -100,6 +122,7 @@ class NupebController {
             this.el.btnBack.showGrid()
             this.el.nupebMembers.show()
 
+            this.el.nupebThemes.hide()
             this.el.nupebEvents.hide()
             this.el.nupebDocs.hide()
             this.el.nupebActivities.hide()
@@ -110,24 +133,24 @@ class NupebController {
             this.el.nupebCine.hide()
         })
         this.el.btnObjectives.addEventListener('click', e => {
-            // if (this.el.aboutNupeb.style.display === 'none'){
-                this.el.aboutNupeb.show()
-                this.el.btnBack.showGrid()
+            this.el.aboutNupeb.show()
+            this.el.btnBack.showGrid()
 
-                this.el.nupebEvents.hide()
-                this.el.nupebDocs.hide()
-                this.el.nupebActivities.hide()
-                this.el.nupebContact.hide()
-                this.el.nupebMembers.hide()
-                this.el.jumbo.hide()
-                this.el.logo.hide()
-                this.el.nupebCine.hide()
-            // }
+            this.el.nupebThemes.hide()
+            this.el.nupebEvents.hide()
+            this.el.nupebDocs.hide()
+            this.el.nupebActivities.hide()
+            this.el.nupebContact.hide()
+            this.el.nupebMembers.hide()
+            this.el.jumbo.hide()
+            this.el.logo.hide()
+            this.el.nupebCine.hide()
         })
         this.el.btnBack.addEventListener('click', e => {
             this.el.jumbo.show()
             this.el.logo.show()
 
+            this.el.nupebThemes.hide()
             this.el.nupebEvents.hide()
             this.el.nupebDocs.hide()
             this.el.nupebActivities.hide()

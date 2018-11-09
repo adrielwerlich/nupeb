@@ -5,6 +5,39 @@ from .models import *
 # os últimos adicionados vão empilhando acima, estilo lifo/stack
 
 
+
+
+
+
+
+
+##################### LEITURA POR TEMA ABAIXO #####################	
+
+class LeituraPorTemaInline(admin.StackedInline):
+    model = LeituraPorTema
+
+
+		
+class TemaLeituraAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Tema da leitura', {'fields': ['tema']}),
+				('Comentários sobre o tema/contexto', {'fields': ['comentario']}),
+    ]
+    inlines = [LeituraPorTemaInline]
+    list_filter = ['tema']
+    def delete_button(self, obj):
+        return format_html('<a class="btn" href="/admin/sitenupeb/temaleitura/{}/delete/">Delete</a>', obj.id)
+
+admin.site.register(TemaLeitura, TemaLeituraAdmin)		
+##################### LEITURA POR TEMA ACIMA #####################
+
+
+
+
+
+
+
+
 ##################### FILMES POR TEMA ABAIXO #####################	
 
 class FilmePorTemaInline(admin.StackedInline):
@@ -20,7 +53,7 @@ class TemaFilmeAdmin(admin.ModelAdmin):
     def delete_button(self, obj):
         return format_html('<a class="btn" href="/admin/sitenupeb/temafilme/{}/delete/">Delete</a>', obj.id)
 
-##################### FILMES POR TEMA ABAIXO #####################
+##################### FILMES POR TEMA ACIMA #####################
 	
 ##################### EVENTOS ABAIXO #####################	
 class FotosEventoInline(admin.TabularInline):
@@ -46,6 +79,8 @@ class EventosAdmin(admin.ModelAdmin):
     def delete_button(self, obj):
         return format_html('<a class="btn" href="/admin/sitenupeb/eventos/{}/delete/">Delete</a>', obj.id)
 ##################### ACIMA EVENTOS #####################	
+
+
 #################### ABAIXO DOCUMENTAÇÃO #############################
 class LegislacaoEstadualAdmin(admin.ModelAdmin):
     list_display = ('titulo','descricao','link','delete_button')

@@ -29,6 +29,7 @@
                 <a role="button" id="btn-cinedebate"> Cine Debate </a>
                 <a role="button" id="btn-documents"> Documentos </a>
                 <a role="button" id="btn-events"> Eventos </a>
+                <a role="button" id="btn-movies"> Filmes </a>
                 
 
                 <a role="button" id="btn-contact"> Contato </a>
@@ -430,16 +431,16 @@
         
         <h3>FILMES, DOCUMENTÁRIOS E VÍDEOS (POR TEMAS):</h3>
 
-        
+        <br/><br/>
         
         {% for tema in temasFilmes %}
 		
-          <h4> {{ tema.tema }} </h4>
+          <h4 style="font-weight:710"> {{ tema.tema }} </h4>
 
           <ul>
               {% for filme in tema.filmes %}  
               <li>   
-                <p style="font-size: 16px; font-weight: 700;">
+                <p style="font-size: 16px">
                   {{ filme.titulo }} 
                   <a style="font-size: 16px" href="{{ filme.link }}">[Link]</a>
                 </p>

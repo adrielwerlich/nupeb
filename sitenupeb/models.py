@@ -329,6 +329,38 @@ class FilmePorTema(models.Model):
     link = models.URLField(blank=True, null=True, help_text='link do filme')
     tema = models.ForeignKey(TemaFilme, related_name='temaDofilme', 
 										 null=True,blank=True, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.titulo
+		
+#################### LISTA DE LEITURAS #########################		
+		
+class TemaLeitura(models.Model):		
+    tema = models.CharField(max_length=5000, null=True, blank=True, help_text='tema da leitura')
+    comentario = models.CharField(max_length=15000, null=True, blank=True, help_text='comentário sobre o contexto')
+    def __str__(self):
+		    return self.tema
+		
+class LeituraPorTema(models.Model):
+    titulo = models.CharField(max_length=5000, null=True, blank=True, help_text='titulo/descrição da leitura')
+    link = models.URLField(blank=True, null=True, help_text='link da leitura')
+    tema = models.ForeignKey(TemaLeitura, related_name='temaDaleitura', 
+										 null=True,blank=True, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.titulo
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
