@@ -1,0 +1,8 @@
+/backup
+/backupbd
+/fotos-das-atividades
+/venv
+/.vscode
+/.idea
+/assets
+db.sqlite3

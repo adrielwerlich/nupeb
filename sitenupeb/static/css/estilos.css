@@ -1,0 +1,357 @@
+
+  
+/*************** referente as divisões nupeb abaixo *****************/
+
+#nupeb-events{
+    grid-column: 2/3;
+    grid-row: 1;
+}
+
+#nupeb-members{
+    grid-column: 2/3;
+    grid-row: 1;
+}
+
+#nupeb-documents {
+  margin-top: 0%;
+  grid-column: 2/4;
+  grid-row: 1;
+}
+
+#nupeb-cinedebate {
+    margin-top: -2%;
+    grid-column: 2/4;
+    grid-row: 1;
+}
+
+#nupeb-logo {
+  grid-column: 3 / 4;
+  grid-row: 1/1;
+  margin-left: 20%;
+}
+
+@media (max-width: 775px) {
+    #nupeb-logo {
+        margin-left: 55%;
+    }
+}
+
+@media (max-width: 510px) {
+    #nupeb-logo {
+        margin-left: 45%;
+    }
+}
+
+@media (max-width: 510px) {
+    #about-nupeb {
+        margin-left: 15%;
+    }
+}
+
+#about-nupeb{
+  grid-column: 2/4;
+  grid-row: 1/1;
+  margin-top: -2%;
+}
+
+#nupeb-activities {
+    margin-top: 0%;
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+
+#nupeb-contact {
+    margin-top: 0%;
+    grid-column:2/4;
+    grid-row:1/1;
+}
+
+/*************** referente as divisões nupeb acima *****************/
+
+/* ############## btn back begin abaixo  ############# */
+#btn-back-begin-div {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-column: 2 / 3; 
+  max-width: 100%;
+  margin-top: 10px;
+  
+}
+
+#btn-back-begin{
+			grid-column: 5 / 6;
+}
+
+p {
+    font-size: 16px;
+}
+
+
+
+/*
+@media (max-width: 510px) {
+    #btn-back-begin-div {
+        margin-left: 65% !important;
+    }
+}
+
+@media (max-width: 310px) {
+    #btn-back-begin-div {
+        margin-left: 85% !important;
+    }
+}
+
+
+@media (min-width: 992px) {
+    #btn-back-begin-div {
+        margin-left: 27.333333%;
+    }
+}
+
+#btn-back-begin-div {
+    /*margin-left: 25%;/
+    
+}*/
+
+
+
+
+/* ############## btn back begin acima ############# */
+
+
+
+
+/*.ns-first-row {
+    padding: 5px;
+    margin-top: 10px;
+}*/
+
+
+
+/* **************************************************************** */
+.sidenav {
+    width: 85%;
+    z-index: 1;
+    top: 20px;
+    left: 10px;
+    background: #0e3609;
+    overflow-x: hidden;
+    padding: 8px 0;
+    border-radius: 6px;
+    min-height: 213px;
+}
+
+@media(min-width: 1091px) {
+    .sidenav {
+        min-height: 184px;
+    }
+}
+
+@media(max-width: 890px) {
+    .sidenav {
+        min-height: 236px;
+    }
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    color: white;
+    /*#2196F3;*/
+    display: block;
+}
+
+/*.sidenav a:hover {*/
+/*!*color: white;*!*/
+/*background-color:  rgb(128, 140, 252)!important; !* #578bab *!*/
+/*}*/
+
+.sidenav a:hover {
+    /* color: white; */
+    background-color: rgb(34, 176, 23) !important;
+}
+
+.sidenav li {
+    list-style-type: none;
+}
+/*
+@media (max-width: 570px) {
+    .jumbotron {
+        margin-left: 12%;
+    }
+}*/
+
+
+/* ############# jumbotron abaixo ################# */
+#jumbo {
+    grid-row:1/1;
+    grid-column:2/3;
+    background-color: rgb(78, 128, 103);
+    color: white;
+    padding: 4px 15px;
+    border-radius: 6px;
+    font-size: 14px;
+    height: 185px;
+    margin-top: 28px;
+}
+
+@media screen and (max-width: 768px) {
+    #jumbo {
+        height: 215px
+    }
+}
+
+@media screen and (max-width: 394px) {
+    #jumbo {
+        height: 270px
+    }
+}
+
+/*
+@media screen and (min-width: 1000px) {
+    .btn-objectives-center {
+        margin-left: 37%;
+        margin-top: 15px;
+    }
+}
+
+/* 690 - 801 *
+@media screen and (max-width: 850px) and (min-width: 590px) {
+    .btn-objectives-center {
+        /* margin-left: 26% !important; /
+        /* margin-top: -7px !important; /
+        margin-left: 18% !important;
+        margin-top: -15px !important;
+    }
+}*/
+
+.span-row {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    
+}
+
+@media screen and (min-width: 920px) {
+    .span-row {
+        margin-top: 36px;
+    }
+}
+
+#btn-span-objectives {
+    margin-top: 10px;
+    padding: 5px;
+    grid-column: 2 / 3;
+}
+
+
+/* ############# acima jumbotron ################# */
+
+#main-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  
+}
+
+p *{
+    font-size: initial; font-weight: initial;  
+}
+
+#parent * {
+
+}
+
+.photo-activities {
+    width: 371px;
+    height: 209px;
+}
+
+
+
+@media(max-width: 890px) {
+    .sidenav {
+        min-height: 236px;
+    }
+}
+
+.imglogo {
+    margin-left: 8px;
+    margin-right: 12px;
+    margin-top: 33px;
+    width: 68%;
+    padding: 5px;
+}
+
+
+
+
+.container-menuLateral {
+    grid-column: 1 / 2;
+    grid-row: 1/1;
+    padding-right: 5px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: 25px;
+    margin-top: 2%;
+}
+
+.container-menuLateral li {
+    border-bottom: 1px solid #F4F4F4;
+    padding: 7px 15px !important;
+    font-size: 12px !important;
+    text-align: left;
+}
+
+
+.my_anchor {
+    color: #1D5377 !important;
+    display: block;
+}
+
+
+
+/* estilos para os image cards */
+img.element.style {}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+.pb-5,
+.py-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+}
+
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+.mb-4,
+.my-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+    box-sizing: border-box;
+    margin-bottom: 1.5rem !important;
+}
+
+.card-img-top {
+    width: 100%;
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+}

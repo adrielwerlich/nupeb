@@ -1,0 +1,14 @@
+            <h1 class="font-weight-bold"> ATIVIDADES: </h1>
+
+            {% comment %} <h3>ATIVIDADES REALIZADAS PELO NuPEB EM 2018:</h3> {% endcomment %}
+            {% comment %} <h5 >Reunião do NuPEB</h5> {% endcomment %}
+            <ul>
+                <li > Data: 16 de abril </li>
+                <li class="font-weight-bold"> Horário: 17:30 horas </li>
+                <li class="font-weight-bold"> Local: Sala 3312 </li>
+            </ul>
+
+            <p>Atividade: roda de conversa sobre vida acadêmica, participação em eventos e revisão bibliográfica.</p>
+
+            <img class="photo-activities" src="{% static 'images/foto-nupeb1.jpg' %}"/>
+            <img class="photo-activities" src="{% static 'images/foto-nupeb2.jpg' %}"/>

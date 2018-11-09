@@ -1,0 +1,490 @@
+
+{% extends "modelo_base.html" %}
+{% load embed_video_tags %}
+{% block title %} NuPEB - Pesquisa em Educação {% endblock %}
+{% block comment %}{% endblock %}
+
+{% block css %}
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/estilos.css' %}"/>
+{% endblock %}
+
+{% block style %}
+    <style>
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <body>
+
+    <hr/>
+    <div class="row" id="main-content">
+        <div class="container-menuLateral "> <!-- col-xs-5 col-sm-4 col-md-3  -->
+            <div class="sidenav">
+                <a role="button" id="btn-nupeb-members" >
+                NuPEB - Integrantes</a>
+                <a role="button" id="btn-activities"> Atividades </a>
+                <a role="button" id="btn-cinedebate"> Cine Debate </a>
+                <a role="button" id="btn-documents"> Documentos </a>
+                <a role="button" id="btn-events"> Eventos </a>
+                
+
+                <a role="button" id="btn-contact"> Contato </a>
+                
+
+                <a href="{% url 'admin:index' %}"> Acessar Interface Gerenciador </a></a>
+                
+            </div>
+
+            {#            <img src="{ static 'imagens/logo_observatorio.jpg' %}"/>#}
+        </div>
+
+            {% comment %} {% debug %} {% endcomment %}
+
+        <!-- MOSTRA O JUMBOTRON -->
+        <div class="" id="jumbo" style="display: block;"> <!-- col-xs-5 col-sm-4 col-md-4 col-lg-5 -->
+            <p>
+                Líder: Prof. Dr. Jaime Farias Dresch
+            </p>
+            <strong>Núcleo de Pesquisa em Educação Básica: políticas e processos formativos </strong>
+            <br/>
+            <div class="row span-row">
+                
+                    
+                        <button class="btn-lg btn-success" id="btn-span-objectives">Objetivos</button>
+                    <div class="btn-objectives-center"></div>
+                <!--<div class=" container"></div>-->
+            </div>
+
+        </div>
+        {% comment %} {% load debug_tags %}{% set_trace %} {% endcomment %}
+        {% comment %} {% load debug_tags %}    {% endcomment %}
+         {% comment %} {% attributes varname %} {% details varname %} {% endcomment %}
+        <div class="logo-nupeb " style="display:block;" id="nupeb-logo"> <!--col-xs-3 col-sm-4 col-md-2-->
+            <img src='{% static 'images/logo_nupeb.jpg' %}' class="imglogo"/>
+            {#        <img src='../static/images/logo_nupeb.jpg' class="imglogo" />#}
+        </div>
+
+        <!-- MOSTRA OS MEMBROS DO NuPEB-->
+        
+            <div class="col-xs-6 col-sm-5 col-md-8 col-lg-12" id="nupeb-members" style="display: none;">
+                <h1 class="text-center font-weight-bold"> INTEGRANTES: </h1>
+                <br/>
+                
+                <h3>Pesquisadores</h3>
+                {% for pesquisador in pesquisadores %}
+                <p> {{pesquisador}}
+                {% comment %} Prof. Dr. Jaime Farias Dresch (líder) {% endcomment %}
+                    <a href="{{pesquisador.curriculo}}">Currículo Lattes</a>
+                    {% comment %} http://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K4750497D3 {% endcomment %}
+                        
+                {% endfor %}
+
+                <h3>Estudantes</h3>
+                {% for integrante in integrantes %}
+                    <p>{{integrante}}</p>
+                {% endfor %}
+                
+                <h3>Egresso</h3>
+                {% for egresso in egressos %}
+                    <p>{{egresso}}</p>
+                {% endfor %}
+
+            </div>
+
+            <br/>
+
+
+        <br/><br/><br/>
+
+        <!-- MOSTRA SOBRE O NuPEB-->
+        <article class="col-xs-6 col-sm-5 col-md-8 col-lg-11" id="about-nupeb" style="display: none;">
+            <h1 class="text-center font-weight-bold"> OBJETIVOS: </h1>
+            <P class="font-weight-bold"> Investigar sobre políticas para a Educação Básica e suas relações com os
+                processos formativos na escola,
+                levando em consideração os aspectos envolvidos no processo de elaboração, implementação, avaliação,
+                resistência e redefinição das políticas educacionais. </P>
+            <h1 class="text-center font-weight-bold"> LINHAS DE PESQUISA: </h1>
+            <h3>1) Governo da educação: </h3>
+            <p class="font-weight-bold">constituída por estudos sobre as práticas discursivas, as normas legais, os
+                documentos oficiais e administrativos, bem como pela análise do discurso veiculado pelas diferentes
+                mídias acerca das políticas educacionais;</p>
+            <h3>2) Formação de professores e cotidiano escolar: </h3>
+            <p class="font-weight-bold">investiga os processos formativos no ambiente educacional, abrangendo os
+                diferentes focos das políticas para a Educação Básica como formação inicial e continuada de
+                professores, avaliação, currículo, direitos humanos e diversidade, gestão democrática e
+                financiamento.</p>
+        </article>
+
+
+
+        {# ************** MOSTRA OS CONTATOS ******************#}
+        <div class="col-xs-6 col-sm-5 col-md-8" id="nupeb-contact" style="display: none;">
+            <h1 class="text-center font-weight-bold"> INFORMAÇÕES PARA CONTATO: </h1>
+
+            <h3>Programa de Pós-Graduação em Educação - Mestrado em Educação</h3>
+            <p> Universidade do Planalto Catarinense - UNIPLAC </p>
+            <p> Av. Castelo Branco, 170 - Bairro Universitário - Lages - SC - Brasil </p>
+            <p> Contato do grupo:
+            <a href="mailto:prof.jaime@uniplaclages.edu.br">
+                prof.jaime@uniplaclages.edu.br
+            </a>
+            </p>
+
+            <p> Espelho no Diretório de Grupos de Pesquisa - CNPq:
+            <a href="dgp.cnpq.br/dgp/espelhogrupo/0801250082757410">
+                dgp.cnpq.br/dgp/espelhogrupo/0801250082757410</a>
+            </p>
+
+            <p> Página no Facebook:
+            <a href="https://www.facebook.com/nupeb/">
+                https://www.facebook.com/nupeb/
+            </a>
+            </p>
+
+        </div>
+
+        {#  *************** MOSTRA AS ATIVIDADES ******************  #}
+        <div class="col-xs-6 col-sm-5 col-md-12 col-lg-12" id="nupeb-activities" style="display: none;">
+
+        <h3 class="text-center">ATIVIDADES REALIZADAS PELO NuPEB EM 2018:</h3>
+
+        {% for atividade in atividades.all %}
+            {% comment %} <p> atividade >>> {{atividade}} </p>  {% endcomment %}
+            {% comment %} {% load debug_tags %}{% set_trace %} {% endcomment %}
+            <h3>{{atividade}}</h5>
+            <p> Data: {{atividade.dataAtividade}} </p> 
+            <p> Local: {{atividade.local}} </p> 
+            <p> Descrição: {{atividade.descricao}}</p> 
+            {% for foto in fotos.all%}
+                {% if foto.atividade == atividade%}
+                    <img class="photo-activities" src="{{foto.image.url}}"/>
+                {% endif%}
+            {% endfor%}
+        {% endfor %}
+
+        </div>
+
+        {#  *************** MOSTRA OS CINE DEBATES ******************  #}
+    <div class=" col-xs-12 col-md-11 " id="nupeb-cinedebate" style="display: none;">
+    <!-- col-sm-5 col-lg-12 -->
+        <h1 class="text-center">CINE DEBATE</h1>
+
+
+        <h3>Cronograma de sessões - 2018</h3>
+
+        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Título</th>
+                        <th>Inf.técnicas</th>
+                        <th>Exibições</th>
+                    </tr>
+                </thead>
+
+                <tbody id='table-users'>
+                    {% for filme in filmes %}
+                    <tr>
+                        <td>{{filme.dataFormatada}}</td>
+                        <td>{{filme.titulo}}</td><!--What to put here ?-->
+                        {% for infoTecnica in infoTecnicas %}
+                            {% if infoTecnica.filme == filme%}
+                                
+                                <td>
+                                    Direção: {{infoTecnica.direcao}}<br/> 
+                                    Pais: {{infoTecnica.pais}} <br/>
+                                    Ano: {{infoTecnica.ano|date:'Y'}} <br/>
+                                    {% load smooth_timedelta %}
+                                    {% comment %} {% timedeltaobject|smooth_timedelta %} {% endcomment %}
+                                    
+                                    Duração: {{infoTecnica.duracao|smooth_timedelta}} <br/>
+                                </td>
+                            
+                            {% endif %}
+                        {% endfor%}
+                        <td>
+                            Horário: {{filme.horaExib}}h<br/>
+                            Local: {{filme.horaExib.localExibicao}} <br/>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h2>EVENTOS JÁ REALIZADOS PELO NuPEB EM 2018:</h2>
+
+            {% for evento in eventosCineDebate %}
+                <br/>
+                <hr/>
+                <h3>{{evento.tituloDaExibicao}}</h3> 
+
+                <p> {{evento.dataFormatada}} </p>
+
+                <p> {{evento.local.local}}</p>
+
+                <p> {{evento.endereco}}</p>
+
+                {% if evento.logo %}
+                    <img class="logoExibicao" src="{{evento.logo.url}}"/>
+                {% endif %}
+                <div>
+                 {% for frame in evento.iframe.all %}
+                    
+                        {% video frame.video as my_video %}
+                        {% comment %} URL: {{ my_video.url }}
+                        Thumbnail: {{ my_video.thumbnail }}
+                        Backend: {{ my_video.backend }} {% endcomment %}
+                        {% video my_video "small" %}
+                        {% endvideo %}
+                {% endfor %}
+                </div>
+                <div style="display:flow-root;">
+                    {% for foto in evento.fotos.all %}
+                        <img class="movie-photo" src="{{foto.images.url}}"/>
+                    {% endfor %} <!-- loop das fotos -->
+                </div>
+            {% endfor %} <!-- loop principal dos eventos -->
+            
+            <br/><hr/>
+  {% comment %} {% load debug_tags %}{% set_trace %}  {% endcomment %}
+            
+    </div>
+
+    
+	{# ****************** área dos documetos ********************* #}
+	
+	<div id="nupeb-documents" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="display:none" >
+		<h1 class="text-center"> DOCUMENTOS </h1>
+		
+		<h2> DOCUMENTOS INTERNACIONAIS </h2>
+		
+		<ul>
+		{% for docInternacional in docsInternacionais %}
+			
+			<li>   
+      <p style="font-size: 16px; font-weight: 700;">
+          {{ docInternacional.titulo }} 
+      </p>
+      <p> 
+          {{ docInternacional.descricao }} 
+      </p>
+      <a style="font-size: 16px" href=" {{ docInternacional.link }} "> [Link] </a>
+      </li>
+			
+		{% endfor %}
+		</ul>
+		
+		<h2> DOCUMENTOS NACIONAIS </h2>
+		
+    <ul>
+		{% for docNacional in docsNacionais %}
+	
+			<li>   
+      <p style="font-size: 16px; font-weight: 700;">
+          {{ docNacional.titulo }} 
+          <span> 
+            {{ docNacional.descricao }} 
+          </span>
+          {% if docNacional.link != None %} 
+            <a href="{{ docNacional.link }}">[Link]</a>
+          {% endif %}
+      </p>
+      {% for subdoc in docNacional.subDocs %}
+        <li style="font-size: 16px"> 
+          {{ subdoc.titulo }} 
+          <a href="{{ subdoc.link }}">[Link]</a>
+        </li>
+      {% endfor %}
+      <!--<a href="  docNacional.link  "> [Link] </a>-->
+      </li>	
+    <br/><br/>
+		{% endfor %}
+    </ul>
+	
+		<h2> PUBLICAÇÕES </h2>
+		<ul>
+		{% for publicacao in publicacoes %}
+		
+		<li>   
+      <p style="font-size: 16px; font-weight: 700;">
+          {{ publicacao.titulo }} 
+      </p>
+      <p> 
+          {{ publicacao.descricao }} 
+           <a style="font-size: 16px" href=" {{ publicacao.link }} "> [Link] </a>
+      </p>
+     
+    </li>
+    
+		{% endfor %}
+		</ul>
+    
+		<h2> LEGISLAÇÃO NACIONAL </h2>
+		<ul>
+		{% for legNac in legisNacional %}
+		
+		<li>   
+      <p style="font-size: 16px; font-weight: 700;">
+          {{ legNac.titulo }} 
+      </p>
+      <p> 
+          {{ legNac.descricao|safe|escape }} 
+          <a style="font-size: 16px" href=" {{ legNac.link }} "> [Link] </a>
+      </p>
+      
+    </li>
+    
+		{% endfor %}
+		</ul>
+		
+		<h2> DOCUMENTOS ESTADUAIS (SANTA CATARINA): </h2>
+		
+    <ul>
+		{% for docEstad in docsEstaduais %}
+		
+    <li>   
+      <p style="font-size: 16px; font-weight: 700;">
+          {{ docEstad.titulo }} 
+      </p>
+      <p> 
+          {{ docEstad.descricao }} 
+          <a style="font-size: 16px" href=" {{ docEstad.link }} "> [Link] </a>
+      </p>
+      
+    </li>
+		
+		{% endfor %}
+		</ul>
+	
+		<h2> LEGISLAÇÃO ESTADUAL (SANTA CATARINA): </h2>
+		
+		
+		<ul>
+		{% for lEst in legisEstadual %}
+		
+    <li>   
+      <p style="font-size: 16px; font-weight: 700;">
+          {{ lEst.titulo }} 
+      </p>
+      <p> 
+          {{ lEst.descricao }} 
+          <a style="font-size: 16px" href=" {{ lEst.link }} "> [Link] </a>
+      </p>
+      
+    </li>
+		
+		{% endfor %}
+		</ul>
+	
+	</div>
+  
+   {#  *************** MOSTRA OS CINE DEBATES ABAIXO ******************  #}
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="nupeb-events" style="display: none;">
+
+        <h1 class="text-center">EVENTOS</h1>
+        
+        <h3>PARTICIPAÇÃO DOS INTEGRANTES DO NuPEB EM EVENTOS:</h3>
+
+      <ul>
+        {% for evt in eventos %}
+      
+        <li>   
+          <p style="font-size: 16px; font-weight: 700;">
+            {{ evt.titulo }} 
+          </p>
+          <p>Realização: {{ evt.realizacao }}</p>
+          <p>Local: {{ evt.local }}</p>
+          <p>Participacao: {{ evt.participao }}</p>
+          <p>Data: {{ evt.dataFormatada }}</p>
+          <p>Horário: {{ evt.horario }}</p>
+          <p>Participantes do NuPEB:
+          <ul style="display:block">
+          {% for part in evt.parts%}
+            <li style="font-size: 16px">{{ part.nome }}</li>
+          {% endfor %}  
+          </ul>
+          <br/><br/>
+          <div class="flow-root">
+            {% for img in evt.fotos %}
+            
+              <img src=" {{ img.foto.url }} "/> 
+            {% endfor %}
+          </div>
+        
+        </li>
+        
+      {% endfor %}
+      </ul>
+        
+    </div>
+    {#  *************** MOSTRA OS CINE DEBATES ACIMA ******************  #}
+    
+    
+    {#  *************** MOSTRA OS FILMES POR TEMA ABAIXO ******************  #}
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="nupeb-themes" style="display: none;">
+
+        <h1 class="text-center">FILMES</h1>
+        
+        <h3>FILMES, DOCUMENTÁRIOS E VÍDEOS (POR TEMAS):</h3>
+
+        
+        
+        {% for tema in temasFilmes %}
+		
+          <h4> {{ tema.tema }} </h4>
+
+          <ul>
+              {% for filme in tema.filmes %}  
+              <li>   
+                <p style="font-size: 16px; font-weight: 700;">
+                  {{ filme.titulo }} 
+                  <a style="font-size: 16px" href="{{ filme.link }}">[Link]</a>
+                </p>
+
+              </li>
+              {% endfor %}        
+
+          </ul>
+        {% endfor %}        
+    </div>
+    {#  *************** MOSTRA OS FILMES POR TEMA ACIMA ******************  #}
+    
+    
+    
+	
+	
+        {# ****************** button back begin ********************* #}
+        <div id="btn-back-begin-div" class="col-xs-12" style="display:none">
+            <button class="btn-lg btn-info" id="btn-back-begin"> Voltar </button>
+        </div>
+        
+  </div> <!-- fecha a linha - "row" -->
+
+
+    </body>
+    <hr/>
+
+
+{% endblock %}
+<br> <br> <br>
+<!-- 	</div> -->
+
+<footer>
+    <div class="container-fluid" style="margin-left: 15px">
+        <p>
+            <a
+                    href="https://www.facebook.com/Gecal-Grupo-de-Pesquisa-em-G%C3%AAnero-Educa%C3%A7%C3%A3o-e-Cidadania-na-Am%C3%A9rica-Latina-1789206161123983/"
+                    target="blank">Facebook</a> | <a href="http://dgp.cnpq.br/dgp/espelhogrupo/0019510862452049"
+                                                     target="blank">CNPq</a>
+        </p>
+    </div>
+</footer>
+
+
+
+{% block script %}
+    <script type="text/javascript" src="{% static 'js/NupebController.js' %}"></script>
+{% endblock %}
