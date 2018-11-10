@@ -6,6 +6,145 @@ from .models import *
 
 
 
+##################### PPGE ABAIXO #####################	
+
+class PpgeAdmin(admin.ModelAdmin):
+	list_display = ('descricao','rodape','delete_button')
+    
+	fieldsets = [ ('Ppge descrição', {'fields': ['descricao']}), 
+      ('Rodapé Ppge sobre NuPEB', {'fields': ['rodape']}),
+			('Área de concentração', {'fields': ['areadeconcentracao']}),
+	]
+	def delete_button(self, obj):
+			return format_html('<a class="btn" href="/admin/sitenupeb/ppge/{}/delete/">Delete</a>', obj.id)
+
+admin.site.register(Ppge, PpgeAdmin)			
+
+class DocentePpgeInline(admin.TabularInline):
+			model = DocentesPpge
+			
+class LinhaPpgeAdmin(admin.ModelAdmin):
+    list_display = ('nome','descricao','delete_button')
+    fieldsets = [ ('Nome da linha', {'fields': ['nome']}), 
+	     ('Descrição da linha', {'fields': ['descricao']}),
+	  ]
+    inlines = [DocentePpgeInline]
+	
+    def delete_button(self, obj):
+      return format_html('<a class="btn" href="/admin/sitenupeb/linhappge/{}/delete/">Delete</a>', obj.id)
+
+admin.site.register(LinhaPpge, LinhaPpgeAdmin)	
+			
+class DocentesPpgeAdmin(admin.ModelAdmin):
+	list_display = ('nome', 'linha','delete_button')
+    
+	fieldsets = [ ('Nome do docente', {'fields': ['nome']}), 
+	    ('Rodapé Ppge sobre NuPEB', {'fields': ['rodape']}),
+	]
+	
+	def delete_button(self, obj):
+			return format_html('<a class="btn" href="/admin/sitenupeb/docentesppge/{}/delete/">Delete</a>', obj.id)			
+			
+admin.site.register(DocentesPpge, DocentesPpgeAdmin)				
+			
+class ContatoPpgeAdmin(admin.ModelAdmin):
+	list_display = ('link','linkFace','telefone','delete_button')
+    
+	fieldsets = [ ('Link da página', {'fields': ['link']}), 
+	    ('Link do facebook', {'fields': ['linkFace']}),
+			('Telefone Ppge', {'fields': ['telefone']}),
+	]
+	def delete_button(self, obj):
+			return format_html('<a class="btn" href="/admin/sitenupeb/contatoppge/{}/delete/">Delete</a>', obj.id)
+
+admin.site.register(ContatoPpge, ContatoPpgeAdmin)							
+			
+class EmailPpgeAdmin(admin.ModelAdmin):
+	list_display = ('email','delete_button')
+    
+	fieldsets = [ ('Email Ppge', {'fields': ['email']}), 
+	]
+	def delete_button(self, obj):
+			return format_html('<a class="btn" href="/admin/sitenupeb/emailppge/{}/delete/">Delete</a>', obj.id)			
+
+admin.site.register(EmailPpge, EmailPpgeAdmin)							
+
+##################### PPGE ACIMA #####################	
+
+
+
+
+
+
+##################### PESQUISAS ABAIXO #####################	
+
+class PesquisasEmAndamentoAdmin(admin.ModelAdmin):
+	list_display = ('titulo','aluno','modalidade','periodo','delete_button')
+    
+	fieldsets = [ ('Tema da Pesquisa', {'fields': ['titulo']}), 
+	    ('Aluno executando a pesquisa', {'fields': ['aluno']}),
+			('Modalidade da pesquisa', {'fields': ['modalidade']}),
+			('Período da pesquisa', {'fields': ['periodo']}),
+	]
+	list_filter = ['modalidade','periodo']
+	search_fields = ['titulo','aluno','modalidade']
+	def delete_button(self, obj):
+			return format_html('<a class="btn" href="/admin/sitenupeb/pesquisasemandamento/{}/delete/">Delete</a>', obj.id)
+
+			
+class PesquisasRealizadasAdmin(admin.ModelAdmin):
+	list_display = ('titulo','aluno','modalidade','periodo','delete_button')
+    
+	fieldsets = [ ('Tema da Pesquisa', {'fields': ['titulo']}), 
+	    ('Aluno executando a pesquisa', {'fields': ['aluno']}),
+			('Modalidade da pesquisa', {'fields': ['modalidade']}),
+			('Período da pesquisa', {'fields': ['periodo']}),
+	]
+	list_filter = ['modalidade','periodo']
+	search_fields = ['titulo','aluno','modalidade']
+	def delete_button(self, obj):
+			return format_html('<a class="btn" href="/admin/sitenupeb/pesquisasrealizadas/{}/delete/">Delete</a>', obj.id)			
+			
+					
+admin.site.register(PesquisasEmAndamento,PesquisasEmAndamentoAdmin)
+admin.site.register(PesquisasRealizadas, PesquisasRealizadasAdmin)
+
+##################### PESQUISAS ACIMA #####################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##################### MATERIAL DIDÁTICO ABAIXO #####################	
+
+class DescricaoMaterialDidaticoInline(admin.StackedInline):
+	model = DescricaoMaterialDidatico
+
+class MaterialDidaticoAdmin(admin.ModelAdmin):
+	list_display = ('titulo','delete_button')
+    
+	inlines = [DescricaoMaterialDidaticoInline]
+		
+	fieldsets = [ ('Tema Material Didático', {'fields': ['titulo']}), ]
+	search_fields = ['titulo']
+	def delete_button(self, obj):
+			return format_html('<a class="btn" href="/admin/sitenupeb/materialdidatico/{}/delete/">Delete</a>', obj.id)
+
+					
+admin.site.register(MaterialDidatico,MaterialDidaticoAdmin)
+admin.site.register(DescricaoMaterialDidatico)
+
+##################### MATERIAL DIDÁTICO  ACIMA #####################
+
 
 
 
@@ -16,8 +155,6 @@ from .models import *
 class LeituraPorTemaInline(admin.StackedInline):
     model = LeituraPorTema
 
-
-		
 class TemaLeituraAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Tema da leitura', {'fields': ['tema']}),
@@ -55,6 +192,12 @@ class TemaFilmeAdmin(admin.ModelAdmin):
 
 ##################### FILMES POR TEMA ACIMA #####################
 	
+	
+	
+	
+	
+	
+	
 ##################### EVENTOS ABAIXO #####################	
 class FotosEventoInline(admin.TabularInline):
     model = FotosEvento
@@ -79,6 +222,10 @@ class EventosAdmin(admin.ModelAdmin):
     def delete_button(self, obj):
         return format_html('<a class="btn" href="/admin/sitenupeb/eventos/{}/delete/">Delete</a>', obj.id)
 ##################### ACIMA EVENTOS #####################	
+
+
+
+
 
 
 #################### ABAIXO DOCUMENTAÇÃO #############################
@@ -171,6 +318,10 @@ class DocsInternacionaisAdmin(admin.ModelAdmin):
 
 
 
+
+
+
+
 class LinhaDePesquisaAdmin(admin.ModelAdmin):    
     # list_display = ('Título da linha de pesquisa','descricao')  
     # fieldsets = [
@@ -182,6 +333,13 @@ class LinhaDePesquisaAdmin(admin.ModelAdmin):
     def delete_button(self, obj):
         return format_html('<a class="btn" href="/admin/sitenupeb/linhadepesquisa/{}/delete/">Delete</a>', obj.id)    
 
+				
+				
+				
+				
+				
+#################### INTEGRANTES ABAIXO #############################
+				
 class EgressoAdmin(admin.ModelAdmin):    
     # list_display = ('nomeAmostrar')  
     fieldsets = [
@@ -214,11 +372,21 @@ class PesquisadorAdmin(admin.ModelAdmin):
     def delete_button(self, obj):
         return format_html('<a class="btn" href="/admin/sitenupeb/pesquisador/{}/delete/">Delete</a>', obj.id)
 
-class IframesLinksInline(admin.StackedInline):
-    model = IframesLinks
+				
+#################### INTEGRANTES ACIMA #############################
+
+
+
+
+
+
+#################### EVENTOS CINEDEBATE ABAIXO #############################
+				
+class VideoTrailerInline(admin.StackedInline):
+    model = VideoTrailer
 
 class ImagensDoCineDebate(admin.TabularInline):
-    model = fotosImagensDoCineDebate    
+    model = FotosDoCineDebate    
 
 class EventosCineDebateAdmin(admin.ModelAdmin):
     list_display = ('tituloDaExibicao','data','local','endereco','delete_button')  
@@ -230,7 +398,7 @@ class EventosCineDebateAdmin(admin.ModelAdmin):
         ('Endereço ', {'fields': ['endereco']}),
         ('Se houver insira o logo do trailer do vídeo', {'fields': ['logo']}),
     ]
-    inlines = [IframesLinksInline, ImagensDoCineDebate]
+    inlines = [VideoTrailerInline, ImagensDoCineDebate]
     search_fields = ['tituloDaExibicao','data','local','endereco']
     list_filter = ['tituloDaExibicao','data','local','endereco']
     def delete_button(self, obj):
@@ -244,19 +412,6 @@ class CineDebateInline(admin.TabularInline):
     model = CineDebate
     extra = 2
 
-class PeriodoAdmin(admin.ModelAdmin):
-    list_display = ('dataInicial','dataFinal')
-    fieldsets = [
-        ('Período dos eventos a serem cadastrados', {'fields': ['dataInicial', 'dataFinal']}),
-    ]
-    inlines = [AtividadesPorAnoInline, CineDebateInline]
-
-class AnoAdmin(admin.ModelAdmin):
-    # list_display = ('ano')
-    fieldsets = [
-        ('Ano dos eventos a serem cadastrados', {'fields': ['ano']}),
-    ]
-    inlines = [AtividadesPorAnoInline, CineDebateInline]
 
 class InformacoesTecnicasInline(admin.StackedInline):
     model = InformacoesTecnicas
@@ -283,18 +438,12 @@ class FilmesAdmin(admin.ModelAdmin):
     def delete_button(self, obj):
         return format_html('<a class="btn" href="/admin/sitenupeb/filmes/{}/delete/">Delete</a>', obj.id)
 
-class FotosDasAtividadesAdmin(admin.ModelAdmin):
-    list_display = ('atividade','image','comentario', '__str__', 'delete_button')        
-    search_fields = ['atividade']
-
-    def delete_button(self, obj):
-        return format_html('<a class="btn" href="/admin/sitenupeb/fotosdasatividades/{}/delete/">Delete</a>', obj.id)
-
+				
 class FilmesInline(admin.TabularInline):
     model = Filmes
 
 class ImagensCineDebateInline(admin.TabularInline):
-    model = fotosImagensDoCineDebate
+    model = FotosDoCineDebate
     extra = 2
 
 class EventosCineDebateInline(admin.StackedInline):
@@ -309,6 +458,23 @@ class CineDebateAdmin(admin.ModelAdmin):
 class CineDebateEventoAdmin(admin.ModelAdmin):
     list_display = ('tituloDaExibicao','data', 'cine','local')
     inlines = [ImagensCineDebateInline]
+				
+				
+###################### EVENTOS CINEDEBATE ACIMA ##################				
+
+
+				
+				
+###################### ATIVIDADES ABAIXO ##################				
+				
+				
+class FotosDasAtividadesAdmin(admin.ModelAdmin):
+    list_display = ('atividade','image','comentario', '__str__', 'delete_button')        
+    search_fields = ['atividade']
+
+    def delete_button(self, obj):
+        return format_html('<a class="btn" href="/admin/sitenupeb/fotosdasatividades/{}/delete/">Delete</a>', obj.id)
+
 
 class FotosInline(admin.TabularInline):
     model = FotosDasAtividades
@@ -326,15 +492,37 @@ class AtividadesPorAnoAdmin(admin.ModelAdmin):
     list_filter = ['dataAtividade']
     inlines = [FotosInline]
     search_fields = ['tituloDaAtividade','local']
+		
 
 class HorarioAdmin(admin.ModelAdmin):
     list_display = ('horario','filme','localExibicao')
     list_filter = ['horario','filme','localExibicao']
     search_fields = ['filme','localExibicao']
 
-# class FotosInline(admin.TabularInline):
-#     model = FotosDasAtividades
-#     extra = 1
+############# ATIVIDADES ACIMA #######################
+
+
+#################### PERIODO ABAIXO #############################
+
+class PeriodoAdmin(admin.ModelAdmin):
+    list_display = ('dataInicial','dataFinal')
+    fieldsets = [
+        ('Período dos eventos a serem cadastrados', {'fields': ['dataInicial', 'dataFinal']}),
+    ]
+    inlines = [AtividadesPorAnoInline, CineDebateInline]
+
+class AnoAdmin(admin.ModelAdmin):
+    # list_display = ('ano')
+    fieldsets = [
+        ('Ano dos eventos a serem cadastrados', {'fields': ['ano']}),
+    ]
+    inlines = [AtividadesPorAnoInline, CineDebateInline]
+
+#################### PERIODO ACIMA #############################
+
+
+
+
 
 
 admin.site.register(AtividadesPorAno, AtividadesPorAnoAdmin)
@@ -379,11 +567,14 @@ admin.site.register(TemaFilme, TemaFilmeAdmin)
     
 ############sem personalização de admin###########
 admin.site.register(FilmePorTema)
-admin.site.register(IframesLinks)
+admin.site.register(VideoTrailer)
 admin.site.register(LocalExibicao)
 admin.site.register(Objetivos)
 admin.site.register(ProximoFilme)
 admin.site.register(InformacoesTecnicas)
+admin.site.register(ParticipanteEvento)
+admin.site.register(FotosEvento)
+admin.site.register(LeituraPorTema)
 
 admin.site.site_header = 'NuPEB'
 admin.site.site_title = 'Gerenciador NuPEB'

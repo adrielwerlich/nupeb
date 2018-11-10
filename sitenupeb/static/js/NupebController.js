@@ -13,8 +13,15 @@ class NupebController {
         this.el.nupebDocs = document.getElementById('nupeb-documents')
         this.el.nupebEvents = document.getElementById('nupeb-events')
         this.el.nupebThemes = document.getElementById('nupeb-themes')
-
-        //this.el.nupebThemes = document.getElementById('nupeb-themes')
+        this.el.nupebReads = document.getElementById('nupeb-reads')
+        this.el.nupebMaterials = document.getElementById('nupeb-materials')
+        this.el.nupebResearch = document.getElementById('nupeb-research')  
+        /*
+         *****************************************************************
+         *****************************************************************
+         *****************************************************************
+         *****************************************************************
+        */
         
         
         // ****** buttons and links ********
@@ -27,6 +34,9 @@ class NupebController {
         this.el.btnDocs = document.getElementById('btn-documents')
         this.el.btnEvents = document.getElementById('btn-events')
         this.el.btnMovies = document.getElementById('btn-movies')
+        this.el.btnReads = document.getElementById('btn-reads')
+        this.el.btnMaterials = document.getElementById('btn-materials')
+        this.el.btnResearch = document.getElementById('btn-research')
 
 
         this.initPrototypes()
@@ -34,10 +44,64 @@ class NupebController {
 
     }
     initEvents(){
+        this.el.btnResearch.addEventListener('click', e => {
+            this.el.nupebResearch.show() 
+            this.el.btnBack.showGrid()
+
+            this.el.nupebMaterials.hide()
+            this.el.nupebReads.hide()
+            this.el.nupebThemes.hide()
+            this.el.nupebEvents.hide()
+            this.el.nupebDocs.hide()
+            this.el.nupebActivities.hide()
+            this.el.nupebContact.hide()
+            this.el.nupebMembers.hide()
+            this.el.aboutNupeb.hide()
+            this.el.jumbo.hide()
+            this.el.logo.hide()
+            this.el.nupebCine.hide()
+        })
+        this.el.btnMaterials.addEventListener('click', e => {
+            this.el.nupebMaterials.show()
+            this.el.btnBack.showGrid()
+
+            this.el.nupebResearch.hide() 
+            this.el.nupebReads.hide()
+            this.el.nupebThemes.hide()
+            this.el.nupebEvents.hide()
+            this.el.nupebDocs.hide()
+            this.el.nupebActivities.hide()
+            this.el.nupebContact.hide()
+            this.el.nupebMembers.hide()
+            this.el.aboutNupeb.hide()
+            this.el.jumbo.hide()
+            this.el.logo.hide()
+            this.el.nupebCine.hide()          
+        })
+        this.el.btnReads.addEventListener('click', e => {
+            this.el.nupebReads.show()
+            this.el.btnBack.showGrid()
+
+            this.el.nupebResearch.hide()
+            this.el.nupebMaterials.hide()
+            this.el.nupebThemes.hide()
+            this.el.nupebEvents.hide()
+            this.el.nupebDocs.hide()
+            this.el.nupebActivities.hide()
+            this.el.nupebContact.hide()
+            this.el.nupebMembers.hide()
+            this.el.aboutNupeb.hide()
+            this.el.jumbo.hide()
+            this.el.logo.hide()
+            this.el.nupebCine.hide()          
+        })
         this.el.btnMovies.addEventListener('click', e => {
             this.el.nupebThemes.show()
             this.el.btnBack.showGrid()
 
+            this.el.nupebResearch.hide()
+            this.el.nupebMaterials.hide()
+            this.el.nupebReads.hide()
             this.el.nupebEvents.hide()
             this.el.nupebDocs.hide()
             this.el.nupebActivities.hide()
@@ -52,6 +116,9 @@ class NupebController {
             this.el.nupebEvents.show()
             this.el.btnBack.showGrid()
 
+            this.el.nupebResearch.hide()
+            this.el.nupebMaterials.hide()
+            this.el.nupebReads.hide()
             this.el.nupebThemes.hide()
             this.el.nupebDocs.hide()
             this.el.nupebActivities.hide()
@@ -66,6 +133,9 @@ class NupebController {
             this.el.nupebDocs.show()
             this.el.btnBack.showGrid()
             
+            this.el.nupebResearch.hide()
+            this.el.nupebMaterials.hide()
+            this.el.nupebReads.hide()
             this.el.nupebThemes.hide()
             this.el.nupebEvents.hide()
             this.el.nupebActivities.hide()
@@ -80,6 +150,9 @@ class NupebController {
             this.el.nupebCine.show()
             this.el.btnBack.showGrid()
             
+            this.el.nupebResearch.hide()
+            this.el.nupebMaterials.hide()
+            this.el.nupebReads.hide()
             this.el.nupebThemes.hide()
             this.el.nupebEvents.hide()
             this.el.nupebDocs.hide()
@@ -94,6 +167,9 @@ class NupebController {
             this.el.nupebActivities.show()
             this.el.btnBack.showGrid()
 
+            this.el.nupebResearch.hide()
+            this.el.nupebMaterials.hide()
+            this.el.nupebReads.hide()
             this.el.nupebThemes.hide()
             this.el.nupebEvents.hide()
             this.el.nupebDocs.hide()
@@ -108,6 +184,9 @@ class NupebController {
             this.el.btnBack.showGrid()
             this.el.nupebContact.show()
             
+            this.el.nupebResearch.hide()
+            this.el.nupebMaterials.hide()
+            this.el.nupebReads.hide()
             this.el.nupebThemes.hide()
             this.el.nupebEvents.hide()
             this.el.nupebDocs.hide()
@@ -122,6 +201,9 @@ class NupebController {
             this.el.btnBack.showGrid()
             this.el.nupebMembers.show()
 
+            this.el.nupebResearch.hide()
+            this.el.nupebMaterials.hide()
+            this.el.nupebReads.hide()
             this.el.nupebThemes.hide()
             this.el.nupebEvents.hide()
             this.el.nupebDocs.hide()
@@ -136,6 +218,9 @@ class NupebController {
             this.el.aboutNupeb.show()
             this.el.btnBack.showGrid()
 
+            this.el.nupebResearch.hide()
+            this.el.nupebMaterials.hide()
+            this.el.nupebReads.hide()
             this.el.nupebThemes.hide()
             this.el.nupebEvents.hide()
             this.el.nupebDocs.hide()
@@ -150,6 +235,8 @@ class NupebController {
             this.el.jumbo.show()
             this.el.logo.show()
 
+            this.el.nupebMaterials.hide()
+            this.el.nupebReads.hide()
             this.el.nupebThemes.hide()
             this.el.nupebEvents.hide()
             this.el.nupebDocs.hide()

@@ -21,8 +21,8 @@
 
     <hr/>
     <div class="row" id="main-content">
-        <div class="container-menuLateral "> <!-- col-xs-5 col-sm-4 col-md-3  -->
-            <div class="sidenav">
+        <div id="menu-lateral"> <!-- col-xs-5 col-sm-4 col-md-3  -->
+            
                 <a role="button" id="btn-nupeb-members" >
                 NuPEB - Integrantes</a>
                 <a role="button" id="btn-activities"> Atividades </a>
@@ -30,16 +30,17 @@
                 <a role="button" id="btn-documents"> Documentos </a>
                 <a role="button" id="btn-events"> Eventos </a>
                 <a role="button" id="btn-movies"> Filmes </a>
-                
+                <a role="button" id="btn-reads"> Leituras </a>
+                <a role="button" id="btn-materials"> Materiais Didáticos </a>
+                <a role="button" id="btn-research"> Pesquisas </a>
 
                 <a role="button" id="btn-contact"> Contato </a>
                 
 
                 <a href="{% url 'admin:index' %}"> Acessar Interface Gerenciador </a></a>
                 
-            </div>
+            <!--div class="sidenav"></div-->
 
-            {#            <img src="{ static 'imagens/logo_observatorio.jpg' %}"/>#}
         </div>
 
             {% comment %} {% debug %} {% endcomment %}
@@ -122,7 +123,7 @@
 
 
         {# ************** MOSTRA OS CONTATOS ******************#}
-        <div class="col-xs-6 col-sm-5 col-md-8" id="nupeb-contact" style="display: none;">
+        <div id="nupeb-contact" style="display: none;"> <!--class="col-xs-6 col-sm-5 col-md-8"-->
             <h1 class="text-center font-weight-bold"> INFORMAÇÕES PARA CONTATO: </h1>
 
             <h3>Programa de Pós-Graduação em Educação - Mestrado em Educação</h3>
@@ -232,7 +233,7 @@
                     <img class="logoExibicao" src="{{evento.logo.url}}"/>
                 {% endif %}
                 <div>
-                 {% for frame in evento.iframe.all %}
+                 {% for frame in evento.trailer.all %}
                     
                         {% video frame.video as my_video %}
                         {% comment %} URL: {{ my_video.url }}
@@ -442,7 +443,9 @@
               <li>   
                 <p style="font-size: 16px">
                   {{ filme.titulo }} 
-                  <a style="font-size: 16px" href="{{ filme.link }}">[Link]</a>
+                  {% if filme.link != None %}
+                    <a style="font-size: 16px" href="{{ filme.link }}">[Link]</a>
+                  {% endif %}
                 </p>
 
               </li>
@@ -454,13 +457,107 @@
     {#  *************** MOSTRA OS FILMES POR TEMA ACIMA ******************  #}
     
     
+{#  *************** MOSTRA AS LEITURAS POR TEMA ABAIXO ******************  #}
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="nupeb-reads" style="display: none;">
+
+        <h1 class="text-center">LEITURAS</h1>
+        
+        <h3>LEITURAS RECOMENDADAS (POR TEMAS):</h3>
+
+        <br/><br/>
+        
+        {% for tema in temasLeituras %}
+		
+          <h4 style="font-weight:710"> {{ tema.tema }} </h4>
+
+          <ul>
+              {% for leitura in tema.leituras %}  
+              <li>   
+                <p style="font-size: 16px">
+                {% autoescape off %} {% endautoescape %}
+                  {{ leitura.titulo|safe }}
+                  {% if leitura.link != None %}
+                    <a style="font-size: 16px" href="{{ leitura.link }}">[Link]</a>
+                  {% endif %}
+                </p>
+
+              </li>
+              {% endfor %}        
+
+          </ul>
+        {% endfor %}        
+    </div>
+    {#  *************** MOSTRA AS LEITURAS POR TEMA ACIMA ******************  #}
     
+    
+    
+    
+    {#  *************** MOSTRA MATERIAL DIDÁTICO ABAIXO ******************  #}
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="nupeb-materials" style="display: none;">
+
+        <h1 class="text-center">MATERIAIS DIDÁTICOS</h1>
+        
+        <br/><br/>
+        
+        {% for material in materialdidatico %}
+		
+          <h4 style="font-weight:710"> {{ material.titulo }} </h4>
+
+          <ul>
+              {% for dsc in material.desc %}  
+              <li>   
+                <p style="font-size: 16px">
+                
+                  {{ dsc.descricao }}
+                  {% if dsc.link != None %}
+                    <a style="font-size: 16px" href="{{ dsc.link }}">[Link]</a>
+                  {% endif %}
+                </p>
+
+              </li>
+              {% endfor %}        
+
+          </ul>
+        {% endfor %}        
+    </div>
+    {#  *************** MOSTRA MATERIAL DIDÁTICO ACIMA ******************  #}
+    
+    {#  *************** MOSTRA PESQUISAS REALIZADAS E EM ANDAMENTO ABAIXO ******************  #}
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="nupeb-research" style="display: none;">
+
+        <h1 class="text-center">PESQUISAS</h1>
+        
+        <br/><br/>
+        <h3> Pesquisas em Andamento </h3>
+        {% for pesq in pAndamento %}
+		
+          <p>Titulo: <b>{{pesq.titulo}}</b></p> 
+          <p>{{ pesq.aluno }}</p>
+          <p>{{ pesq.modalidade }}</p>
+          <p>{{ pesq.periodo }}</p>
+          <br/>
+        {% endfor %}
+        
+        <h3> Pesquisas Realizadas </h3>
+        {% for pesq in pRealizadas %}
+		
+          <p>Titulo: <b>{{pesq.titulo}}</b></p> 
+          <p>{{ pesq.aluno }}</p>
+          <p>{{ pesq.modalidade }}</p>
+          <p>{{ pesq.periodo }}</p>
+          <br/>
+        {% endfor %}
+    
+    </div>
+    {#  *************** MOSTRA PESQUISAS REALIZADAS E EM ANDAMENTO ACIMA ******************  #}
+    
+    
+    	
 	
-	
-        {# ****************** button back begin ********************* #}
-        <div id="btn-back-begin-div" class="col-xs-12" style="display:none">
-            <button class="btn-lg btn-info" id="btn-back-begin"> Voltar </button>
-        </div>
+    {# ****************** button back begin ********************* #}
+    <div id="btn-back-begin-div" class="col-xs-12" style="display:none">
+        <button class="btn-lg btn-info" id="btn-back-begin"> Voltar </button>
+    </div>
         
   </div> <!-- fecha a linha - "row" -->
 

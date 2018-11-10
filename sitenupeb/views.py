@@ -31,11 +31,11 @@ def loadModels():
 								
     #********cinedebates*************
     eventosCineDebate = EventosCineDebate.objects.all()
-    iframes = IframesLinks.objects.all()
-    fotosCineDebate = fotosImagensDoCineDebate.objects.all()
+    trailers = VideoTrailer.objects.all()
+    fotosCineDebate = FotosDoCineDebate.objects.all()
     for evento in eventosCineDebate: 
         # evento.ifr = iframes.get(id=evento.id)
-        evento.iframe = iframes.filter(evento__exact=evento)
+        evento.trailer = trailers.filter(evento__exact=evento)
         evento.fotos = fotosCineDebate.filter(cinedebate__exact=evento)
 
 
@@ -75,6 +75,22 @@ def loadModels():
     for temafilme in temasFilmes:
         temafilme.filmes = filmesPorTema.filter(tema__exact=temafilme)
 		
+		#*************** leituras temas ******************
+    temasLeituras = TemaLeitura.objects.all()
+    leiturasPorTema = LeituraPorTema.objects.all()
+    for temaleitura in temasLeituras:
+        temaleitura.leituras = leiturasPorTema.filter(tema__exact=temaleitura)
+		
+		
+		#*************** materiais didáticos ******************
+    materialdidatico = MaterialDidatico.objects.all()
+    descricao_md = DescricaoMaterialDidatico.objects.all()
+    for material in materialdidatico:
+        material.desc = descricao_md.filter(material__exact=material)
+		
+		#*********** pesquisas realizadas e em andamento ***********
+    pRealizadas = PesquisasRealizadas.objects.all()
+    pemAndamento = PesquisasEmAndamento.objects.all()
 		
     #ipdb.set_trace()
     return {'atividades':atividades, 'docsInternacionais':docsInternacionais,
@@ -85,9 +101,12 @@ def loadModels():
             'eventosCineDebate':eventosCineDebate, 'legisEstadual':legisEstadual,
             'pesquisadores':pesquisadores, 'eventos':eventos,
             'integrantes':integrantes, 'temasFilmes':temasFilmes,
-            'egressos':egressos, 
-            'objetivo':objetivo,
-            'linhas':linhas}
+            'egressos':egressos, 'temasLeituras':temasLeituras,
+            'objetivo':objetivo, 'materialdidatico':materialdidatico,
+            'linhas':linhas, 'pRealizadas': pRealizadas,
+						'pAndamento':pemAndamento,
+						
+						}
 
 
 def index(request):

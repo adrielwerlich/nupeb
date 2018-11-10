@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'template_debug',
     'embed_video',
+		'admin_reorder',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+		'admin_reorder.middleware.ModelAdminReorder',
 ]
 
 ROOT_URLCONF = 'nupeb.urls'
@@ -151,3 +152,98 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'sitenupeb/static/media')
 #   os.path.join(BASE_DIR, 'sitenupeb/static/'),
 # ]
 
+
+
+ADMIN_REORDER = (
+		######## CINEDEBATE #######
+    {'app': 'sitenupeb', 'label': 'CineDebate',
+     'models': ('sitenupeb.CineDebate',
+								'sitenupeb.Filmes',
+								'sitenupeb.InformacoesTecnicas',
+								'sitenupeb.LocalExibicao',
+								'sitenupeb.HorarioExibicao',
+								'sitenupeb.EventosCineDebate',
+								'sitenupeb.HorarioExibicao',
+								'sitenupeb.VideoTrailer',
+								'sitenupeb.FotosDoCineDebate',)
+    },
+		######## DOCUMENTOS  ########
+    {'app': 'sitenupeb', 'label': 'Documentos',
+     'models': ('sitenupeb.DocumentosInternacionais',
+						 	  'sitenupeb.DocumentosNacionais',
+					 		  'sitenupeb.SubDocumento',
+				 			  'sitenupeb.Publicacoes',
+			 				  'sitenupeb.LegislacaoNacional',
+		 					  'sitenupeb.DocumentosEstaduais',
+	 						  'sitenupeb.LegislacaoEstadual',)
+    },
+		######## EVENTOS #######
+		{'app': 'sitenupeb', 'label': 'Eventos',
+     'models': ('sitenupeb.Eventos',
+						 	  'sitenupeb.ParticipanteEvento',
+					 		  'sitenupeb.FotosEvento',)
+    },
+		######## FILMES #######
+		{'app': 'sitenupeb', 'label': 'Filmes',
+     'models': ('sitenupeb.TemaFilme',
+						 	  'sitenupeb.FilmePorTema',)
+    },
+		######## LEITURAS  ######## 
+    {'app': 'sitenupeb', 'label': 'Leituras',
+     'models': ('sitenupeb.TemaLeitura',
+						 	  'sitenupeb.LeituraPorTema',)
+    }, 
+		######## MODELOS DE TEMPO ########
+    {'app': 'sitenupeb', 'label': 'Cadastro de período',
+     'models': ('sitenupeb.Periodo',
+						 	  'sitenupeb.Ano',)
+    }, 
+		######## MODELOS ATIVIDADES ########
+    {'app': 'sitenupeb', 'label': 'Cadastro de atividades',
+     'models': ('sitenupeb.AtividadesPorAno',
+						 	  'sitenupeb.FotosDasAtividades',)
+    },
+		######## MODELOS LINHA DE PESQUISA ########
+    {'app': 'sitenupeb', 'label': 'Cadastro Conteúdo Tela de Apresentação',
+     'models': ('sitenupeb.Objetivos',
+						 	  'sitenupeb.LinhaDePesquisa',)
+    },
+		######## MODELOS MATERIAL DIDÁTICO ########
+    {'app': 'sitenupeb', 'label': 'Cadastro dos materiais didáticos',
+     'models': ('sitenupeb.MaterialDidatico',
+						 	  'sitenupeb.DescricaoMaterialDidatico',)
+    },
+		######## MODELOS LINHA DE PESQUISA ########
+    {'app': 'sitenupeb', 'label': 'Cadastro das linhas de pesquisa',
+     'models': ('sitenupeb.PesquisasEmAndamento',
+						 	  'sitenupeb.PesquisasRealizadas',)
+    },
+		######## MODELOS LINHA DE PESQUISA ########
+		{'app': 'sitenupeb', 'label': 'Cadastro da info do Ppge',
+     'models': ('sitenupeb.Ppge',
+						 	  'sitenupeb.LinhaPpge',
+								'sitenupeb.DocentesPpge',
+								'sitenupeb.ContatoPpge',
+								'sitenupeb.EmailPpge',)
+    },
+		
+		
+		
+		
+		
+		
+		
+		
+		)
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

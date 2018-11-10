@@ -1,27 +1,27 @@
 
   
-/*************** referente as divisões nupeb abaixo *****************/
+/*############## DIVISÕES NUPEB ABAIXO ###############*/
 
 #nupeb-events{
     grid-column: 2/4;
-    grid-row: 1;
+    grid-row: 1/3;
 }
 
 #nupeb-members{
     grid-column: 2/4;
-    grid-row: 1;
+    grid-row: 1/3;
 }
 
 #nupeb-documents {
   margin-top: 0%;
   grid-column: 2/4;
-  grid-row: 1;
+  grid-row: 1/3;
 }
 
 #nupeb-cinedebate {
     margin-top: -2%;
     grid-column: 2/4;
-    grid-row: 1;
+    grid-row: 1/3;
 }
 
 #nupeb-logo {
@@ -52,38 +52,50 @@
 
 #about-nupeb{
   grid-column: 2/4;
-  grid-row: 1/1;
+  grid-row: 1/2;
   margin-top: -2%;
 }
 
 #nupeb-activities {
-    margin-top: 0%;
     grid-column: 2/4;
-    grid-row: 1/2;
+    grid-row: 1/3;
 }
 
 #nupeb-contact {
-    margin-top: 0%;
     grid-column:2/4;
-    grid-row:1/1;
+    grid-row:1/3;
 }
 
 #nupeb-themes{
-  margin-top: 0%;
   grid-column:2/4;
-  grid-row:1/1;  
+  grid-row:1/3;  
 }
 
-/*************** referente as divisões nupeb acima *****************/
+#nupeb-reads{
+  grid-column:2/4;
+  grid-row:1/3;  
+}
 
-/* ############## btn back begin abaixo  ############# */
+#nupeb-materials{
+  grid-column:2/4;
+  grid-row:1/3;  
+}
+
+#nupeb-research{
+  grid-column:2/4;
+  grid-row:1/3;  
+}
+
+/*############## DIVISÕES NUPEB ACIMA ###############/
+
+/* ############## BOTÃO BACK BEGIN ABAIXO  ############# */
 #btn-back-begin-div {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-column: 2/3; 
-  grid-row: 2/2;
+  grid-row: 4/5;
   max-width: 100%;
-  margin-top: 10px;
+  /*margin-top: 10px;*/
 }
 
 #btn-back-begin{
@@ -94,61 +106,13 @@ p {
   font-size: 16px;
 }
 
+/* ############## BOTÃO BACK BEGIN ACIMA ############# */
+
+
+
 
 
 /*
-@media (max-width: 510px) {
-    #btn-back-begin-div {
-        margin-left: 65% !important;
-    }
-}
-
-@media (max-width: 310px) {
-    #btn-back-begin-div {
-        margin-left: 85% !important;
-    }
-}
-
-
-@media (min-width: 992px) {
-    #btn-back-begin-div {
-        margin-left: 27.333333%;
-    }
-}
-
-#btn-back-begin-div {
-    /*margin-left: 25%;/
-    
-}*/
-
-
-
-
-/* ############## btn back begin acima ############# */
-
-
-
-
-/*.ns-first-row {
-    padding: 5px;
-    margin-top: 10px;
-}*/
-
-
-
-/* **************************************************************** */
-.sidenav {
-    width: 85%;
-    z-index: 1;
-    top: 20px;
-    left: 10px;
-    background: #0e3609;
-    overflow-x: hidden;
-    padding: 8px 0;
-    border-radius: 6px;
-    min-height: 213px;
-}
-
 @media(min-width: 1091px) {
     .sidenav {
         min-height: 184px;
@@ -159,30 +123,15 @@ p {
     .sidenav {
         min-height: 236px;
     }
-}
+}*/
 
-.sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 15px;
-    color: white;
-    /*#2196F3;*/
-    display: block;
-}
+
 
 /*.sidenav a:hover {*/
 /*!*color: white;*!*/
 /*background-color:  rgb(128, 140, 252)!important; !* #578bab *!*/
 /*}*/
 
-.sidenav a:hover {
-    /* color: white; */
-    background-color: rgb(34, 176, 23) !important;
-}
-
-.sidenav li {
-    list-style-type: none;
-}
 /*
 @media (max-width: 570px) {
     .jumbotron {
@@ -204,6 +153,8 @@ p {
     margin-top: 28px;
 }
 
+
+/*
 @media screen and (max-width: 768px) {
     #jumbo {
         height: 215px
@@ -216,7 +167,7 @@ p {
     }
 }
 
-/*
+
 @media screen and (min-width: 1000px) {
     .btn-objectives-center {
         margin-left: 37%;
@@ -256,10 +207,13 @@ p {
 
 /* ############# acima jumbotron ################# */
 
+/* ############# ESTILOS PRINCIPAIS ################# */
 #main-content {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  
+  grid-template-rows: minmax(15px, 380px) 2fr minmax(15px, auto) minmax(55px, 65px);
+  /*grid-template-rows: 3ch auto minmax(10px, 60px);*/
+  min-height: 350px;
 }
 
 p *{
@@ -270,6 +224,10 @@ p *{
 
 }
 
+/* ############# ESTILOS PRINCIPAIS ################# */
+
+
+/*
 .photo-activities {
     width: 371px;
     height: 209px;
@@ -281,8 +239,10 @@ p *{
     .sidenav {
         min-height: 236px;
     }
-}
+}*/
 
+
+/* imglogo está sendo usado. não mexer */
 .imglogo {
     margin-left: 8px;
     margin-right: 12px;
@@ -292,9 +252,9 @@ p *{
 }
 
 
+/* ############# MENU LATERAL ABAIXO ################# */
 
-
-.container-menuLateral {
+#menu-lateral {
     grid-column: 1 / 2;
     grid-row: 1/1;
     padding-right: 5px;
@@ -302,30 +262,44 @@ p *{
     margin-right: auto;
     margin-left: 25px;
     margin-top: 2%;
+    background: #0e3609;
+    max-height: 100%;
+    /*position: absolute;*/
+    border-radius: 3em 0.5em 0.5em 3em;
+
 }
 
-.container-menuLateral li {
+#menu-lateral li {
     border-bottom: 1px solid #F4F4F4;
     padding: 7px 15px !important;
     font-size: 12px !important;
     text-align: left;
+    list-style-type: none;
 }
 
-
-.my_anchor {
-    color: #1D5377 !important;
+#menu-lateral a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    color: white;
     display: block;
 }
 
+#menu-lateral a:hover {
+  background-color: rgb(34, 176, 23) !important;
+  outline: thin solid orange;
+}
+
+  
 
 
-/* estilos para os image cards */
-img.element.style {}
+/* ############# MENU LATERAL ACIMA ################# */
 
+/*
 img {
     vertical-align: middle;
     border-style: none;
-}
+}*/
 
 .pb-5,
 .py-5 {
@@ -342,6 +316,7 @@ img {
     margin-bottom: 1.5rem !important;
 }
 
+/*
 .card {
     position: relative;
     display: -ms-flexbox;
@@ -362,4 +337,4 @@ img {
     width: 100%;
     border-top-left-radius: calc(.25rem - 1px);
     border-top-right-radius: calc(.25rem - 1px);
-}
+}*/

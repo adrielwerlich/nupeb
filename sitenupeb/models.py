@@ -59,6 +59,10 @@ class Objetivos(models.Model):
 
     def __str__(self):
         return self.objetivos
+				
+    class Meta:
+		    verbose_name = "Objetivos"
+		    verbose_name_plural = "Objetivos"		
 
 
 class LinhaDePesquisa(models.Model):
@@ -68,7 +72,9 @@ class LinhaDePesquisa(models.Model):
     detalhes = models.TextField(max_length=12000, null=True, blank=True)
     def __str__(self):
         return self.nomeDaLinha
-
+    class Meta:
+		    verbose_name = "Linha de Pesquisa"
+		    verbose_name_plural = "Linhas de Pesquisa"		
 
 				
 ################## EVENTOS CINE DEBATE #################################3				
@@ -116,6 +122,11 @@ class InformacoesTecnicas(models.Model):
 
     def anoFormatado(self):
         return self.ano.strftime('%Y')
+				
+    class Meta:
+		    verbose_name = "Informações Técnicas"
+		    verbose_name_plural = "Informações Técnicas"		
+		
 
 
 class LocalExibicao(models.Model):
@@ -135,6 +146,10 @@ class HorarioExibicao(models.Model):
 
     def __str__(self):
         return self.horario.strftime('%H:%M')
+				
+    class Meta:
+		    verbose_name = "Horário Exibicao"
+		    verbose_name_plural = "Horários de Exibicao"		
 
 
 class EventosCineDebate(models.Model):
@@ -157,7 +172,7 @@ class EventosCineDebate(models.Model):
 		    verbose_name_plural = 'Eventos CineDebate'
 
 
-class IframesLinks(models.Model):
+class VideoTrailer(models.Model):
     # linkDoVideo = models.CharField(max_length=3200,blank=True, null=True)
     # link = models.URLField(blank=True, null=True)
     evento = models.ForeignKey(EventosCineDebate, related_name='eventoDoLink',
@@ -172,7 +187,7 @@ class IframesLinks(models.Model):
         return reverse('posts:detail', kwargs={'pk': self.pk})
 
 
-class fotosImagensDoCineDebate(models.Model):
+class FotosDoCineDebate(models.Model):
     images = models.ImageField(upload_to='imagens-cinedebate')
     cinedebate = models.ForeignKey(EventosCineDebate, related_name='imagensDoCineDebate', null=True,
                                    blank=True, on_delete=models.CASCADE)
@@ -286,22 +301,29 @@ class LegislacaoEstadual(models.Model):
 ##################### EVENTOS #####################		
 
 class Eventos(models.Model):	
-	titulo = models.CharField(max_length=890, null=True, blank=True)
-	realizacao = models.CharField(max_length=890, null=True, blank=True)
-	local = models.CharField(max_length=890, null=True, blank=True)
-	participacao = models.CharField(max_length=1290, null=True, blank=True)
-	data = models.DateField(null=True, blank=True, help_text='data do evento')
-	horario = models.CharField(max_length=100, null=True, blank=True)
-	adicionais = models.TextField(null=True, blank=True, help_text="informações adicionais. Pode ser editado com html")
-	def __str__(self):
-	    return self.titulo
-  
-	def dataFormatada(self):
-	  if (self.data != None):
-	      return self.data.strftime('%d/%m/%Y')
-	  else:
-		    return "sem data cadastrada"
-			
+		titulo = models.CharField(max_length=890, null=True, blank=True)
+		realizacao = models.CharField(max_length=890, null=True, blank=True)
+		local = models.CharField(max_length=890, null=True, blank=True)
+		participacao = models.CharField(max_length=1290, null=True, blank=True)
+		data = models.DateField(null=True, blank=True, help_text='data do evento')
+		horario = models.CharField(max_length=100, null=True, blank=True)
+		adicionais = models.TextField(null=True, blank=True, help_text="informações adicionais. Pode ser editado com html")
+		
+		class Meta:
+			verbose_name = "Eventos"
+			verbose_name_plural = "Eventos"
+
+		def __str__(self):
+				return self.titulo
+		
+		def dataFormatada(self):
+			if (self.data != None):
+					return self.data.strftime('%d/%m/%Y')
+			else:
+					return "sem data cadastrada"
+				
+				
+  			
 #	def dataFormatada(self):
  #       return self.data.strftime('%d/%m/%Y')
 	
@@ -347,22 +369,95 @@ class LeituraPorTema(models.Model):
 										 null=True,blank=True, on_delete=models.CASCADE)
     def __str__(self):
         return self.titulo
+				
+    class Meta:
+		    verbose_name = "LeituraPorTema"
+		    verbose_name_plural = "Leituras por Tema"
+
+####################### MATERIAL DIDÁTICO #######################
+
+class MaterialDidatico(models.Model): 
+    titulo = models.CharField(max_length=5000, null=True, blank=True, help_text='contexto do material didático')
 		
+    def __str__(self):
+        return self.titulo
+				
+class DescricaoMaterialDidatico(models.Model):		
+    descricao = models.CharField(max_length=5000, null=True, blank=True, help_text='descrição e temas do material didático')
+    link = models.URLField(blank=True, null=True, help_text='link do material didático')
+    material = models.ForeignKey(MaterialDidatico, related_name='descricaoDoMaterialDidatico', 
+										 null=True,blank=True, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.descricao
 		
+####################### PESQUISAS #######################
+
+class PesquisasEmAndamento(models.Model): 
+    titulo = models.CharField(max_length=500, null=True, blank=True, help_text='título da pesquisa')
+    aluno = models.CharField(max_length=500, null=True, blank=True, help_text='aluno da pesquisa')
+    modalidade = models.CharField(max_length=500, null=True, blank=True, help_text='tipo da pesquisa')
+    periodo = models.CharField(max_length=500, null=True, blank=True, help_text='periodo da pesquisa')
 		
+    def __str__(self):
+        return self.titulo
+				
+    class Meta:
+        verbose_name = "PesquisasEmAndamento"
+        verbose_name_plural = "Pesquisas em Andamento"		
+				
+class PesquisasRealizadas(models.Model):		
+    titulo = models.CharField(max_length=500, null=True, blank=True, help_text='título da pesquisa')
+    aluno = models.CharField(max_length=500, null=True, blank=True, help_text='aluno da pesquisa')
+    modalidade = models.CharField(max_length=500, null=True, blank=True, help_text='tipo da pesquisa')
+    periodo = models.CharField(max_length=500, null=True, blank=True, help_text='periodo da pesquisa')
+            
+    def __str__(self):
+        return self.titulo		
 		
+    class Meta:
+        verbose_name = "PesquisasRealizadas"
+        verbose_name_plural = "Pesquisas Realizadas"
 		
+#################### PPGE #######################
+
+class Ppge(models.Model):
+    descricao = models.CharField(max_length=1500, null=True, blank=True, help_text='descrição do mestrado')
+    rodape = models.CharField(max_length=1500, null=True, blank=True, help_text='descrição do mestrado')
+    areadeconcentracao = models.CharField(max_length=100, null=True, blank=True, help_text='área de concentração',
+		    verbose_name="Área de concentração")
+    def __str__(self):
+        return self.descricao
+				
+class LinhaPpge(models.Model):
+    nome =   models.CharField(max_length=500, null=True, blank=True, help_text='descrição da linha')
+    descricao = models.CharField(max_length=500, null=True, blank=True, help_text='descrição da linha')
 		
+    def __str__(self):
+        return self.nome
+				
+class DocentesPpge(models.Model):
+    nome = models.CharField(max_length=500, null=True, blank=True, help_text='nome do docente')
+    linha = models.ForeignKey(LinhaPpge, related_name='linhaPpge', blank=True, null=True, 
+                            on_delete=models.CASCADE, help_text='linha do docente')
+    def __str__(self):
+        return self.nome
+				
+class ContatoPpge(models.Model):
+    link = models.URLField(blank=True, null=True, help_text='link do mestrado')
+    linkFace = models.URLField(blank=True, null=True, help_text='link do mestrado no face')
+    telefone = models.CharField(max_length=500, null=True, blank=True, help_text='telefone contato mestrado')
 		
+    def __str__(self):
+        return "Contato PPGE"
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+class EmailPpge(models.Model):		
+    email = models.EmailField(max_length=70, blank=True, null=True, unique=True, default=None)
+    # protect the db from saving any blank fields (from admin or your app form)
+    def save(self, *args, **kwargs):
+        if self.email is not None and self.email.strip() == "":
+            self.email = None
+        models.Model.save(self, *args, **kwargs)	
+
+    def __str__(self):
+        return self.email
 		
