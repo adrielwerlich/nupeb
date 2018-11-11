@@ -177,7 +177,7 @@
     <!-- col-sm-5 col-lg-12 -->
         <h1 class="text-center">CINE DEBATE</h1>
 
-        
+       
         <h3>Cronograma de sessões - 2018</h3>
 
         <!-- *** tabela abaixo *** -->
@@ -222,8 +222,13 @@
             <!-- *** tabela acima *** -->
             
             
-            
-            
+            {% if proximofilme != None %}
+            <div style="padding: 8px; margin-top:8px">
+              <h3>Próxima sessão --- Participe!</h3>
+              <br/>
+              <img src="{{proximofilme.proximoFilme.url}}"/>
+            </div>
+            {% endif %}
             
             <h2>EVENTOS JÁ REALIZADOS PELO NuPEB EM 2018:</h2>
 

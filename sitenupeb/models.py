@@ -94,15 +94,14 @@ class CineDebate(models.Model):
     periodo = models.ForeignKey(
         Periodo, related_name='periodoDosCineDebates', null=True, on_delete=models.SET_NULL)
     descricao = models.CharField(max_length=600)
-    proximoFilme = models.ImageField(help_text="logo do próximo filme",
-        upload_to='imagens-cinedebate', null=True, blank=True)
 
-    #def __str__(self):
-      #if self.descricao == None:
-         # return "ERROR-CINEDEBATE NULL"
-					
+
+    def __str__(self):
+      if self.descricao == None:
+          return "ERROR-CINEDEBATE NULL"
+      			
 			
-      #return str(self.descricao) if self.descricao else ''
+      return str(self.descricao) if self.descricao else ''
 
 
 class Filmes(models.Model):
@@ -116,8 +115,11 @@ class Filmes(models.Model):
         verbose_name_plural = "Filmes"
 
     def __str__(self):
-        return self.titulo
-
+        if (self.titulo != None):
+            return str(self.titulo) 
+        else:
+            return 'filme com título vazio'
+						
     def dataFormatada(self):
         return self.data.strftime('%d/%m/%Y')
 
@@ -127,8 +129,19 @@ class ProximoFilme(models.Model):
         CineDebate, related_name='sessao', null=True, on_delete=models.CASCADE)
     filme = models.ForeignKey(
         Filmes, related_name='filme', null=True, on_delete=models.CASCADE)
+    proximoFilme = models.ImageField(help_text="logo do próximo filme",
+        upload_to='imagens-cinedebate', null=True, blank=True)
 
-
+    def __str__(self):
+        if (self.filme == None): 
+            return 'sem filme no proximo filme'
+			
+        return str(self.filme) if (self.filme) else 'filme vazio'
+		
+    class Meta:
+        verbose_name = "Próximo Filme"
+        verbose_name_plural = "Próximo Filme"
+				
 class InformacoesTecnicas(models.Model):
     direcao = models.CharField(max_length=500)
     ano = models.DateField(blank=True, default=datetime.now)

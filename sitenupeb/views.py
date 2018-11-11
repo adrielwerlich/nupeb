@@ -20,25 +20,21 @@ def loadModels():
     horariosExibicao = HorarioExibicao.objects.all()
 
     for filme in filmes:
-    #     filme.infoTecs = infoTecs.filter(filme__exact=filme)
-    #    filme.horario = horariosExibicao.filter(filme__exact=filme)
-    #     for infTec in infoTecs:
-    #         if infTec.filme == filme:
-    #             filme.infTec = infTec
         for horario in horariosExibicao:
             if horario.filme == filme:
                 filme.horaExib = horario
 								
     #********cinedebates*************
+
     eventosCineDebate = EventosCineDebate.objects.all()
     trailers = VideoTrailer.objects.all()
     fotosCineDebate = FotosDoCineDebate.objects.all()
     for evento in eventosCineDebate: 
-        # evento.ifr = iframes.get(id=evento.id)
         evento.trailer = trailers.filter(evento__exact=evento)
         evento.fotos = fotosCineDebate.filter(cinedebate__exact=evento)
 
-
+    proximofilme = ProximoFilme.objects.all().first()
+				
     #********integrantes,pesquisadores etc *************
     pesquisadores = Pesquisador.objects.all()
     integrantes = Integrante.objects.all()
@@ -119,6 +115,7 @@ def loadModels():
             'linhas':linhas, 'pRealizadas': pRealizadas,
 						'pAndamento':pemAndamento,'ppge':ppge,
 						'referencias':referencias,
+						'proximofilme':proximofilme
 						}
 
 

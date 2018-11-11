@@ -165,7 +165,8 @@ ADMIN_REORDER = (
 								'sitenupeb.EventosCineDebate',
 								'sitenupeb.HorarioExibicao',
 								'sitenupeb.VideoTrailer',
-								'sitenupeb.FotosDoCineDebate',)
+								'sitenupeb.FotosDoCineDebate',
+								'sitenupeb.ProximoFilme',)
     },
 		######## DOCUMENTOS  ########
     {'app': 'sitenupeb', 'label': 'Documentos',
