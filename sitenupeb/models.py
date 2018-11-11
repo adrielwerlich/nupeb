@@ -10,17 +10,27 @@ class Periodo(models.Model):
     dataFinal = models.DateField(blank=True, default=datetime.now)
 
     def __str__(self):
-        return \
-            'Data Início: ' + str(self.dataInicial.strftime('%e %b %Y')) + \
-            '. Data Final: ' + str(self.dataFinal.strftime('%e %b %Y'))
+      if self.dataInicial==None or self.dataFinal==None: 
+        print('periodo none type ***********')
+        return "ERROR-PERIODO NULL"
+        
+      return \
+					str('Data Início: ' + str(self.dataInicial.strftime('%e %b %Y')) + \
+				  '. Data Final: ' + str(self.dataFinal.strftime('%e %b %Y'))) \
+					if self.dataInicial and self.dataFinal else 'periodo vazio'
 
 
 class Ano(models.Model):
     ano = models.DateField(blank=True, default=datetime.now)
 
     def __str__(self):
-        return self.ano.strftime('%b %e %Y')
-        #  atividade.dataAtividade.strftime('%e %b %Y')
+      if self.ano==None: 
+        print('ano none type ***********')
+        return "ERROR-ANO NULL"
+			
+      return str(self.ano.strftime('%b %e %Y')) if self.ano else 'ano'
+				
+          
 
 ################ MODELOS ATIVIDADES ########################
 class AtividadesPorAno(models.Model):
@@ -84,9 +94,15 @@ class CineDebate(models.Model):
     periodo = models.ForeignKey(
         Periodo, related_name='periodoDosCineDebates', null=True, on_delete=models.SET_NULL)
     descricao = models.CharField(max_length=600)
+    proximoFilme = models.ImageField(help_text="logo do próximo filme",
+        upload_to='imagens-cinedebate', null=True, blank=True)
 
-    def __str__(self):
-        return self.descricao
+    #def __str__(self):
+      #if self.descricao == None:
+         # return "ERROR-CINEDEBATE NULL"
+					
+			
+      #return str(self.descricao) if self.descricao else ''
 
 
 class Filmes(models.Model):

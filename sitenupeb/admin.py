@@ -193,8 +193,9 @@ admin.site.register(PesquisasRealizadas, PesquisasRealizadasAdmin)
 ##################### MATERIAL DIDÁTICO ABAIXO #####################	
 
 class DescricaoMaterialDidaticoInline(admin.StackedInline):
-	model = DescricaoMaterialDidatico
-
+  model = DescricaoMaterialDidatico
+  extra = 0
+	
 class MaterialDidaticoAdmin(admin.ModelAdmin):
 	list_display = ('titulo','delete_button')
     
@@ -245,7 +246,8 @@ admin.site.register(TemaLeitura, TemaLeituraAdmin)
 
 class FilmePorTemaInline(admin.StackedInline):
     model = FilmePorTema
-
+    extra = 0
+		
 class TemaFilmeAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Tema do filme', {'fields': ['tema']}),
@@ -267,7 +269,7 @@ class TemaFilmeAdmin(admin.ModelAdmin):
 ##################### EVENTOS ABAIXO #####################	
 class FotosEventoInline(admin.TabularInline):
     model = FotosEvento
-    extra = 2
+    extra = 0
 
 class ParticipantesEventoInline(admin.TabularInline):
     model = ParticipanteEvento
@@ -450,9 +452,11 @@ class PesquisadorAdmin(admin.ModelAdmin):
 				
 class VideoTrailerInline(admin.StackedInline):
     model = VideoTrailer
+    extra = 0
 
 class ImagensDoCineDebate(admin.TabularInline):
-    model = FotosDoCineDebate    
+    model = FotosDoCineDebate   
+    extra = 0
 
 class EventosCineDebateAdmin(admin.ModelAdmin):
     list_display = ('tituloDaExibicao','data','local','endereco','delete_button')  
@@ -472,22 +476,24 @@ class EventosCineDebateAdmin(admin.ModelAdmin):
 
 class AtividadesPorAnoInline(admin.TabularInline):
     model = AtividadesPorAno
-    extra = 2
-
+    extra = 0
+		
 class CineDebateInline(admin.TabularInline):
     model = CineDebate
-    extra = 2
+    extra = 0
 
 
 class InformacoesTecnicasInline(admin.StackedInline):
     model = InformacoesTecnicas
-
+    extra = 0
 
 class HorarioExibicaoInline(admin.StackedInline):
     model = HorarioExibicao
+    extra = 0
 
 class LocalExibicaoInline(admin.StackedInline):
     model = LocalExibicao
+    extra = 0
 
 class FilmesAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'data','titulo','cinedebate', 'delete_button')
@@ -507,25 +513,27 @@ class FilmesAdmin(admin.ModelAdmin):
 				
 class FilmesInline(admin.TabularInline):
     model = Filmes
-
+    extra = 0
+		
 class ImagensCineDebateInline(admin.TabularInline):
     model = FotosDoCineDebate
-    extra = 2
+    extra = 0
 
 class EventosCineDebateInline(admin.StackedInline):
     model = EventosCineDebate
-
+    extra = 0
+		
 class CineDebateAdmin(admin.ModelAdmin):
     list_display = ('ano','periodo', 'descricao')
     inlines = [FilmesInline, EventosCineDebateInline]
     list_filter = ['ano','periodo']
     search_fields = ['tituloDaAtividade', 'local']
 
-class CineDebateEventoAdmin(admin.ModelAdmin):
-    list_display = ('tituloDaExibicao','data', 'cine','local')
-    inlines = [ImagensCineDebateInline]
+#class CineDebateEventoAdmin(admin.ModelAdmin):
+ #   list_display = ('tituloDaExibicao','data', 'cine','local')
+  #  inlines = [ImagensCineDebateInline]
 				
-				
+
 ###################### EVENTOS CINEDEBATE ACIMA ##################				
 
 
@@ -544,7 +552,7 @@ class FotosDasAtividadesAdmin(admin.ModelAdmin):
 
 class FotosInline(admin.TabularInline):
     model = FotosDasAtividades
-    extra = 1
+    extra = 0
 
 class AtividadesPorAnoAdmin(admin.ModelAdmin):
     list_display = ('tituloDaAtividade','dataAtividade','local','descricao')
