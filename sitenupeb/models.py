@@ -461,3 +461,43 @@ class EmailPpge(models.Model):
     def __str__(self):
         return self.email
 		
+		
+####################  PRODUÇÃO  ##################
+		
+
+class RefereciaCita(models.Model):
+    titulo = models.CharField(max_length=500, null=True, blank=True, help_text='título da pesquisa')
+    link = models.URLField(blank=True, null=True, help_text='link da pesquisa')
+    #pesquisador = models.ForeignKey('AutorPesquisa',null=True, blank=True, 
+		    #help_text='pesquisadores que participam da pesquisa', on_delete=models.SET_NULL)
+    pesq = models.ManyToManyField('AutoresPesq', related_name='autoresDaPesquisa',through='AutorRef', verbose_name='pesquisador')		
+    def __str__(self):
+        return self.titulo
+    class Meta:
+		    verbose_name = "Referência bibliográfica"
+		    verbose_name_plural = "Referências bibliográficas"
+				
+class AutoresPesq(models.Model):
+    nome = models.CharField(max_length=500, null=True, blank=True, help_text='nome do pesquisador')
+    link = models.URLField(blank=True, null=True, help_text='link do currículo do pesquisador')
+    pesquisa = models.ManyToManyField('RefereciaCita', through='AutorRef', verbose_name='pesquisador',
+        related_name='pesquisaDoAutor', help_text='pesquisa que o autor participa')
+		
+    def __str__(self):
+        return self.nome
+    class Meta:
+		    verbose_name = "Autores Pesquisa"
+		    verbose_name_plural = "Autores Pesquisa"
+
+class AutorRef(models.Model):
+    pesquisa = models.ForeignKey(RefereciaCita, null=True, related_name='pesquisarn',
+		    help_text='pesquisa que o autor participa', on_delete=models.CASCADE)
+    pesquisador = models.ForeignKey(AutoresPesq, null=True, related_name='autorDaPesquisa',
+  	    help_text='pesquisadores que participam da pesquisa', on_delete=models.CASCADE)
+		
+    def __str__(self):
+        return self.pesquisador.nome + ", " + self.pesquisa.titulo[:100]
+		
+    class Meta:
+		    verbose_name = "Autor Pesquisa"
+		    verbose_name_plural = "Autor Pesquisa"

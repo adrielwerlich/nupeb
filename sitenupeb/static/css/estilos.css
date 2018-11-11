@@ -1,5 +1,23 @@
 
   
+#contacts-ppge{
+  font-size: 16px; 
+  background-color: rgba(58,58,58,1); 
+  color: white;
+  padding: 15px;
+}  
+
+
+#contacts-ppge li:hover { 
+  color:green;
+  outline: thin solid green;
+}  
+  
+#contacts-ppge li a:hover { 
+  color:orange;
+  outline: thin solid orange;
+}  
+  
 /*############## DIVISÕES NUPEB ABAIXO ###############*/
 
 #nupeb-events{
@@ -82,6 +100,16 @@
 }
 
 #nupeb-research{
+  grid-column:2/4;
+  grid-row:1/3;  
+}
+
+#nupeb-ppge{
+  grid-column:2/4;
+  grid-row:1/3;  
+}
+
+#nupeb-production{
   grid-column:2/4;
   grid-row:1/3;  
 }
@@ -211,13 +239,13 @@ p {
 #main-content {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: minmax(15px, 380px) 2fr minmax(15px, auto) minmax(55px, 65px);
+  grid-template-rows: minmax(15px, 470px) 2fr minmax(15px, auto) minmax(55px, 65px);
   /*grid-template-rows: 3ch auto minmax(10px, 60px);*/
   min-height: 350px;
 }
 
 p *{
-    font-size: initial; font-weight: initial;  
+    font-size: initial; /*font-weight: initial;  */
 }
 
 #parent * {

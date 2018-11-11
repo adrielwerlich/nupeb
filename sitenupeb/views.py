@@ -1,5 +1,5 @@
 import ipdb
-
+from django.db.models import Prefetch
 from django.shortcuts import render
 from .models import *
 # CineDebate,Filmes,HorarioExibicao,Ano,AtividadesPorAno,FotosDasAtividades,\
@@ -92,7 +92,20 @@ def loadModels():
     pRealizadas = PesquisasRealizadas.objects.all()
     pemAndamento = PesquisasEmAndamento.objects.all()
 		
+		#***************** PPGE *****************
+    ppge = Ppge.objects.all().first()
+    ppge.linhasPpge = LinhaPpge.objects.all()
+    docentes = DocentesPpge.objects.all()
+    for linha  in ppge.linhasPpge:
+		    linha.docentes = docentes.filter(linha__exact=linha)
+    ppge.contato = ContatoPpge.objects.all().first()
+    ppge.email = EmailPpge.objects.all()
+		
+		#************ referências e autores ************
+    referencias = RefereciaCita.objects.all()
+		
     #ipdb.set_trace()
+    
     return {'atividades':atividades, 'docsInternacionais':docsInternacionais,
             'filmes':filmes, 'docsNacionais':docsNacionais,
             'fotos':fotosDasAtividades, 'legisNacional':legisNacional,
@@ -104,8 +117,8 @@ def loadModels():
             'egressos':egressos, 'temasLeituras':temasLeituras,
             'objetivo':objetivo, 'materialdidatico':materialdidatico,
             'linhas':linhas, 'pRealizadas': pRealizadas,
-						'pAndamento':pemAndamento,
-						
+						'pAndamento':pemAndamento,'ppge':ppge,
+						'referencias':referencias,
 						}
 
 

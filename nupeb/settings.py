@@ -226,7 +226,12 @@ ADMIN_REORDER = (
 								'sitenupeb.ContatoPpge',
 								'sitenupeb.EmailPpge',)
     },
-		
+		######## PRODUÇÃO ########
+		{'app': 'sitenupeb', 'label': 'Cadastro das referências',
+     'models': ('sitenupeb.RefereciaCita',
+						 	  'sitenupeb.AutoresPesq',
+								'sitenupeb.AutorRef',)
+    },
 		
 		
 		

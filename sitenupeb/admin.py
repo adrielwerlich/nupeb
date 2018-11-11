@@ -6,6 +6,72 @@ from .models import *
 
 
 
+
+
+##################### PRODUÇÃO ABAIXO #####################	
+
+class AutorRefInline(admin.TabularInline):
+			model = AutorRef
+
+class RefereciaCitacaoAdmin(admin.ModelAdmin):
+    list_display = ('titulo','link','delete_button')
+    fieldsets = [ ('Título da referência', {'fields': ['titulo']}), 
+        ('Link da referência', {'fields': ['link']}),
+		  	#('Pesquisadores', {'fields': ['pesquisador']}),
+	  ]
+    inlines = [AutorRefInline]  	
+    
+    search_fields = ['titulo']		
+    def delete_button(self, obj):
+        return format_html('<a class="btn" href="/admin/sitenupeb/referenciacitacao/{}/delete/">Delete</a>', obj.id)
+
+admin.site.register(RefereciaCita, RefereciaCitacaoAdmin)	
+
+
+			
+class AutoresPesquisaAdmin(admin.ModelAdmin):
+    list_display = ('nome','link','delete_button')
+    fieldsets = [ ('Nome do autor', {'fields': ['nome']}), 
+	     ('Link do currículo', {'fields': ['link']}),
+			 #('Pesquisa', {'fields': ['descricao']}),
+	  ]
+    list_filter = ['nome']
+    search_fields = ['nome','pesquisa']
+    inlines = [AutorRefInline]    
+    def delete_button(self, obj):
+      return format_html('<a class="btn" href="/admin/sitenupeb/autorpesquisa/{}/delete/">Delete</a>', obj.id)
+
+admin.site.register(AutoresPesq, AutoresPesquisaAdmin)	
+
+"""
+class RefInline(admin.TabularInline):
+			model = RefereciaCita
+
+class AutoresInline(admin.TabularInline):
+			model = AutoresPesq			
+
+
+class AutorPesquisaAdmin(admin.ModelAdmin):
+    list_display = ('pesquisa','pesquisador')		
+    inlines = [AutoresInline,RefInline]    
+		"""
+admin.site.register(AutorRef)			
+
+################## PRODUÇÃO ACIMA ####################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ##################### PPGE ABAIXO #####################	
 
 class PpgeAdmin(admin.ModelAdmin):

@@ -3,6 +3,7 @@
 {% load embed_video_tags %}
 {% block title %} NuPEB - Pesquisa em Educação {% endblock %}
 {% block comment %}{% endblock %}
+{% load debug_tags %}
 
 {% block css %}
     <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
@@ -33,6 +34,8 @@
                 <a role="button" id="btn-reads"> Leituras </a>
                 <a role="button" id="btn-materials"> Materiais Didáticos </a>
                 <a role="button" id="btn-research"> Pesquisas </a>
+                <a role="button" id="btn-ppge"> PPGE UNIPLAC </a>
+                <a role="button" id="btn-production"> Produção </a>
 
                 <a role="button" id="btn-contact"> Contato </a>
                 
@@ -552,6 +555,92 @@
     {#  *************** MOSTRA PESQUISAS REALIZADAS E EM ANDAMENTO ACIMA ******************  #}
     
     
+    {#  *************** MOSTRA CONTATO PPGE ABAIXO ******************  #}
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="nupeb-ppge" style="display: none;">
+
+        <h1 class="text-center">PPGE UNIPLAC</h1>
+        
+        <br/><br/>
+        <h3> Mestrado em Educação </h3>
+        
+        
+        <p>{{ ppge.descricao }}</p>
+        
+        
+          
+          <p style="font-size: 16px; font-weight: 700">
+            Área de concentração: {{ppge.areadeconcentracao}}
+          </p>
+        <hr/><br/>
+        <p style="font-size: 16px" class="text-center">
+          Linhas de pesquisa:
+        </p>  
+        {% for linha in ppge.linhasPpge %}   
+          <p style="font-size: 16px; font-weight: 700">
+            {{linha.nome}}
+          </p>
+          <p>{{linha.descricao}}</p>
+          <p> Docentes: 
+          {% for docente in linha.docentes %}  
+              {{docente.nome}} {% if not forloop.last %} , {% endif %}
+              
+              {% if forloop.last %} . {% endif %}
+          {% endfor %}
+          </p>
+          
+        {% endfor %}
+        
+        <div id="contacts-ppge">
+          <p>Para maiores informações, acesse:</p>
+          <li>Site do PPGE:<a href="{{ppge.contato.link}}">[PPGE Uniplac]</a></li>
+          <li>Facebook: <a href="{{ppge.contato.linkFace}}">[Link no Face]</a></li>
+          <li>Telefones: {{ppge.contato.telefone}}</li>
+          <li>E-mails: 
+            {% for email in ppge.email %} 
+             <a href="mailto:{{email.email}}">{{email.email}}</a>
+             {% if not forloop.last %} ou {% endif %}
+             {% if forloop.last %} . {% endif %}
+            {% endfor %}
+          </li>  
+        </div>
+        <h3>NuPEB</h3>
+        
+        <p>{{ppge.rodape}}</p>
+        
+    
+    </div>
+    {#  *************** MOSTRA  CONTATO PPGE ACIMA ******************  #}
+    
+    
+    {#  *************** MOSTRA PESQUISAS ABAIXO ******************  #}
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="nupeb-production" style="display: none;">
+    
+      <!--{autoref}-->
+      <!-- set_trace %}-->
+      {% for referencia in referencias %}
+        <p>
+        {% for autor in referencia.pesq.all %}
+
+            <a href="{{autor.link}}">{{ autor }}</a>
+            
+            {% if not forloop.last %}, {% endif %}
+              
+            {% if forloop.last %}. {% endif %}
+        
+        {% endfor %}
+         
+        {{ referencia|safe|escape }} 
+        {% if referencia.link != None %} 
+            <a href="{{ referencia.link }}">[Link]</a>
+          {% endif %}
+        
+        </p>
+       
+      {% endfor %}
+    
+    </div>
+    {#  *************** MOSTRA PESQUISAS ACIMA ******************  #}
+        
     	
 	
     {# ****************** button back begin ********************* #}
